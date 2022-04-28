@@ -22,14 +22,11 @@ class Iniciar_sesion_model extends CI_model{
         
         $data = $this->db->get('usuarios')->result_array();
 
-        if(COUNT($data)==1){
-            if($this->session->set_userdata('usuario',$data[0])){
-                return array('estado'=>200,'msg'=>'Acceso Concedido');
-            }else{
-                return array('estado'=>400,'msg'=>'Error de session, acceso denegado');
-            }
+        if(count($data)>0){ 
+            $sesion = $this->session->set_userdata('usuario',$data[0]);
+            return array('estado'=>200,'msg'=>'Acceso Concedido'); 
         }else{
-            return array('estado'=>404,'msg'=>'Error de credenciales, acceso denegado');
+            return array('estado'=>400,'msg'=>'Error de session, acceso denegado');
         } 
     }
 }

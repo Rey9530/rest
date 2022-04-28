@@ -75,11 +75,13 @@
 
                 $.ajax({
                     type        : 'POST',
-                    url         :  '<?=base_url()?>iniciar_sesion/logueo',
+                    url         : '<?=base_url()?>iniciar_sesion/logueo',
                     data		: $('#form_sesion').serialize(),
                     dataType    : 'json',
-                    success: function(data){
-                        
+                    success: function(data){ 
+                        if(data.estado==200){
+                            location.reload();
+                        }
                     }
                 });
             });
