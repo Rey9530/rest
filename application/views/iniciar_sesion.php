@@ -84,8 +84,9 @@
                         }
                     }
                 });
+                
             });
 		});
-	</script>
+	</script> 
 </body>
 </html>

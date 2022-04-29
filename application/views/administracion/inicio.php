@@ -206,32 +206,17 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
-                     
-
+                    </div>
                 </div>
-
             </div>
-
             <?php include('includes/footer.php');?>
         </div>
         <!--  END CONTENT PART  -->
-
     </div>
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="<?=base_url()?>assets/assets/js/libs/jquery-3.1.1.min.js"></script>
-    <script src="<?=base_url()?>assets/bootstrap/js/popper.min.js"></script>
-    <script src="<?=base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<?=base_url()?>assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="<?=base_url()?>assets/assets/js/app.js"></script>
-    <script>
-        $(document).ready(function() {
-            App.init();
-        });
-    </script>
-    <script src="<?=base_url()?>assets/assets/js/custom.js"></script>
+    <?php include('includes/scripts.php'); ?>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

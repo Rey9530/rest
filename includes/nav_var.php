@@ -4,12 +4,12 @@
 
         <ul class="navbar-item theme-brand flex-row  text-center">
             <li class="nav-item theme-logo">
-                <a href="<?=base_url()?>assets/index.html">
+                <a href="<?=base_url()?>">
                     <img src="<?=base_url()?>assets/assets/img/90x90.jpg" class="navbar-logo" alt="logo">
                 </a>
             </li>
             <li class="nav-item theme-text">
-                <a href="<?=base_url()?>assets/index.html" class="nav-link"> CORK </a>
+                <a href="<?=base_url()?>" class="nav-link"> CORK </a>
             </li>
         </ul>
 
@@ -27,7 +27,7 @@
         <ul class="navbar-item flex-row ml-md-auto">
 
             <li class="nav-item dropdown language-dropdown">
-                <a href="<?=base_url()?>assets/javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="<?=base_url()?>" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="<?=base_url()?>assets/assets/img/ca.png" class="flag-width" alt="flag">
                 </a>
                 <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
