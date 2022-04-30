@@ -1,10 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-function table_categoria(){
+function table_producto(){
     $CI =& get_instance();    
 
-    $data = $CI->db->query('SELECT * FROM categorias WHERE estado=1'); 
+    $data = $CI->db->query('SELECT * FROM productos WHERE estado=1'); 
     ?>
         <div class="table-responsive">
             <table class="table table-bordered mb-4">
@@ -12,6 +12,7 @@ function table_categoria(){
                     <tr>
                         <th>#</th>
                         <th>Descripci&oacute;n</th>
+                        <th>Precio</th>
                         <th>Imagen</th>
                         <th>Acciones</th>
                     </tr>
@@ -24,12 +25,13 @@ function table_categoria(){
                         <tr>
                             <td> <?=$i?> </td>
                             <td> <?=$item['descripcion']?> </td>
+                            <td> <?=$item['precio']?> </td>
                             <td class='text-center'> 
                                 <?php
                                     if(!empty($item['img'])){
-                                      $url = base_url().'archivos/categorias/'.$item['img'];
+                                      $url = base_url().'archivos/productos/'.$item['img'];
                                     }else{
-                                        $url = base_url().'archivos/categorias/'.$item['img'] ;
+                                        $url = base_url().'archivos/productos/'.$item['img'] ;
                                     } 
                                 ?>
                                 
@@ -38,10 +40,10 @@ function table_categoria(){
                                 </div>
                             </td>
                             <td> 
-                                <button class="btn btn-info" onclick="formulario_categoria(<?=$item['id_categoria']?>);">
+                                <button class="btn btn-info" onclick="formulario_producto(<?=$item['id_producto']?>);">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                                 </button>
-                                <button class="btn btn-danger" onclick="eliminar_categoria(<?=$item['id_categoria']?>);">
+                                <button class="btn btn-danger" onclick="eliminar_producto(<?=$item['id_producto']?>);">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 icon"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                                 </button>
                             </td>
@@ -53,7 +55,7 @@ function table_categoria(){
             </table>
             <script>
                 
-                    function eliminar_categoria(tk=0){
+                    function eliminar_producto(tk=0){
 
                         swal({
                             title: '¿Estas seguro?',
@@ -65,13 +67,13 @@ function table_categoria(){
                             if (result.value) {
                                 $.ajax({
                                     type        : 'POST',
-                                    url         : '<?=base_url()?>administracion/categorias/eliminar_categoria',
+                                    url         : '<?=base_url()?>administracion/productos/eliminar_producto',
                                     data		: {tk},
                                     dataType    : 'json',
                                     success: function(data){
                                         if(data.estado==200){
                                             $('#modal').modal('hide');
-                                            table_categoria();
+                                            table_producto();
                                             const toast = swal.mixin({
                                                 toast: true,
                                                 position: 'top-end',
@@ -103,21 +105,25 @@ function table_categoria(){
         </div>
     <?php
 }
-function formulario_categoria($id){
+function formulario_producto($id){
     $CI =& get_instance(); 
     $id = intval($id);
-    $data = $CI->db->query('SELECT * FROM categorias WHERE id_categoria='.$id)->result_array(); 
+    $data = $CI->db->query('SELECT * FROM productos WHERE id_producto='.$id)->result_array(); 
     $descripcion ='';
+    $precio =0;
+    $id_categoria =0;
     $img ='';
     foreach($data AS $item){
         $descripcion = $item['descripcion'];
-        $img   = base_url().'archivos/categorias/'.$item['img']; 
+        $precio = $item['precio'];
+        $id_categoria = $item['id_categoria'];
+        $img   = base_url().'archivos/productos/'.$item['img']; 
     }
     ?> 
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Categoria</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">producto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
@@ -125,12 +131,30 @@ function formulario_categoria($id){
                 <div class="modal-body"> 
                     <div class="row">
                         <div class="col-lg-12 col-12 mx-auto">
-                            <form method="post" id="procesar_categoria" >
+                            <form method="post" id="procesar_producto" >
                                 <div class="form-group">
                                     <p>Descripci&oacute;n</p>
                                     <label for="t-text" class="sr-only">Text</label>
                                     <input type="hidden" name="tk_" id="tk_" value="<?=$id?>">
                                     <input id="descripcion" type="text" name="descripcion" value="<?=$descripcion?>" placeholder="Ingrese una descripcion...." class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <p>Precio</p>
+                                    <label for="t-text" class="sr-only">Text</label> 
+                                    <input id="precio" type="number" step='0.01' name="precio" value="<?=$precio?>" placeholder="Ingrese un precio...." class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <p>Categoria</p>
+                                    <label for="t-text" class="sr-only">Text</label> 
+                                    <select id="categoria" name="categoria" class="form-control" >
+                                        <?php
+                                            $data = $CI->db->query('SELECT * FROM categorias WHERE estado=1')->result_array(); 
+                                            foreach ($data AS $value) {
+                                                $selected = ($value['id_categoria']==$id_categoria)?'selected':'';
+                                                echo '<option '.$selected.' value="'.$value['id_categoria'].'">'.$value['descripcion'].'</option>';
+                                            }
+                                        ?>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-file-container" data-upload-id="myFirstImage">
@@ -150,7 +174,7 @@ function formulario_categoria($id){
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="procesar_categoria()" id="procesar_btn">Procesar</button>
+                    <button type="button" class="btn btn-primary" onclick="procesar_producto()" id="procesar_btn">Procesar</button>
                 </div>
             </div>
         </div> 
@@ -158,9 +182,9 @@ function formulario_categoria($id){
                 var firstUpload = new FileUploadWithPreview('myFirstImage',{
                     showDeleteButtonOnImages: true,
                     text: { 
-                        chooseFile: 'Choose file...',
+                        chooseFile: 'Seleccione Archivo...',
                         browse: 'Browse',
-                        selectedCount: 'files selected'
+                        selectedCount: 'Seleccione Archivos...'
                     },
                     maxFileCount: 0,
                     images: {
@@ -171,7 +195,7 @@ function formulario_categoria($id){
                     },
                     presetFiles: [] //  an array of preset images
                 });
-            function procesar_categoria(){ 
+            function procesar_producto(){ 
                 if($("#descripcion").val().length<4){
                     swal({
                         title: 'Ooops',
@@ -183,16 +207,20 @@ function formulario_categoria($id){
                 }
                 var formData = new FormData();
                 
-                let categoria = $('#descripcion').val(); 
+                let producto = $('#descripcion').val(); 
+                let precio = $('#precio').val(); 
+                let categoria = $('#categoria').val(); 
                 let tk_ = $('#tk_').val(); 
-                formData.append("categoria", categoria);
+                formData.append("producto", producto);
                 formData.append("tk_", tk_);
+                formData.append("categoria", categoria);
+                formData.append("precio", precio);
                 if(firstUpload.cachedFileArray.length>0){
                     formData.append("archivo", firstUpload.cachedFileArray[0]);
                 }
                 $.ajax({
                     type        : 'POST',
-                    url         : '<?=base_url()?>administracion/categorias/guardar',
+                    url         : '<?=base_url()?>administracion/productos/guardar',
                     data		: formData,
                     cache       : false,
                     contentType : false,
@@ -205,7 +233,7 @@ function formulario_categoria($id){
                     success: function(data){
                         if(data.estado==200){
                             $('#modal').modal('hide');
-                            table_categoria();
+                            table_producto();
                             const toast = swal.mixin({
                                 toast: true,
                                 position: 'top-end',

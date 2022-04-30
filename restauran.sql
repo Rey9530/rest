@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.22-MariaDB)
-# Date: 2022-04-30 00:17:03
+# Date: 2022-04-30 00:41:28
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -20,6 +20,9 @@ CREATE TABLE `categorias` (
 # Data for table "categorias"
 #
 
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1,'Desayunos','1651300345.jpg','1'),(2,'Almuerzos','1651300741.png','1');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
 #
 # Structure for table "mesas"
@@ -38,6 +41,32 @@ CREATE TABLE `mesas` (
 # Data for table "mesas"
 #
 
+/*!40000 ALTER TABLE `mesas` DISABLE KEYS */;
+INSERT INTO `mesas` VALUES (1,'Mesa 1','4','1');
+/*!40000 ALTER TABLE `mesas` ENABLE KEYS */;
+
+#
+# Structure for table "productos"
+#
+
+DROP TABLE IF EXISTS `productos`;
+CREATE TABLE `productos` (
+  `id_producto` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `estado` varchar(1) DEFAULT '1' COMMENT '1=activo, 0=eliminado',
+  `precio` decimal(10,2) DEFAULT 0.00,
+  `id_categoria` int(11) DEFAULT 0,
+  PRIMARY KEY (`id_producto`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+#
+# Data for table "productos"
+#
+
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+INSERT INTO `productos` VALUES (1,'Huevos ','1651300596.jpg','1',45.00,2),(2,'Carne','1651300791.jpg','0',56.00,2);
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 #
 # Structure for table "usuarios"
