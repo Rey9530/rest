@@ -4,17 +4,18 @@
 function table_producto(){
     $CI =& get_instance();    
 
-    $data = $CI->db->query('SELECT * FROM productos WHERE estado=1'); 
+    $data = $CI->db->query('SELECT productos.*,categorias.descripcion AS categoria_descripcion FROM productos INNER JOIN categorias ON categorias.id_categoria=productos.id_categoria WHERE productos.estado=1'); 
     ?>
         <div class="table-responsive">
             <table class="table table-bordered mb-4">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Descripci&oacute;n</th>
-                        <th>Precio</th>
-                        <th>Imagen</th>
-                        <th>Acciones</th>
+                        <th class='text-center'>#</th>
+                        <th class='text-center'>Descripci&oacute;n</th>
+                        <th class='text-center'>Precio</th>
+                        <th class='text-center'>Categoria</th>
+                        <th class='text-center'>Imagen</th>
+                        <th class='text-center'>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,23 +24,24 @@ function table_producto(){
                     foreach ($data->result_array() as $item) { $i ++;
                         ?> 
                         <tr>
-                            <td> <?=$i?> </td>
-                            <td> <?=$item['descripcion']?> </td>
-                            <td> <?=$item['precio']?> </td>
+                            <td class='text-center'> <?=$i?> </td>
+                            <td class='text-center'> <?=$item['descripcion']?> </td>
+                            <td class='text-center'> <?=$item['precio']?> </td>
+                            <td class='text-center'> <?=$item['categoria_descripcion']?> </td>
                             <td class='text-center'> 
                                 <?php
                                     if(!empty($item['img'])){
-                                      $url = base_url().'archivos/productos/'.$item['img'];
+                                        $url = base_url().'archivos/productos/'.$item['img'];
                                     }else{
                                         $url = base_url().'archivos/productos/'.$item['img'] ;
                                     } 
-                                ?>
+                                    ?>
                                 
                                 <div class="avatar avatar-xl">
-                                    <img alt="avatar" src="<?=$url?>" class="rounded" style="width:20%;" />
+                                    <img alt="avatar" src="<?=$url?>" class="rounded" style="width:150px;" />
                                 </div>
                             </td>
-                            <td> 
+                            <td class='text-center'> 
                                 <button class="btn btn-info" onclick="formulario_producto(<?=$item['id_producto']?>);">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                                 </button>
