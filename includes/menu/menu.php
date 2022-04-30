@@ -34,6 +34,11 @@
                         <a href="<?=base_url()?>administracion/mesas"> Mesas</a>
                     </li>  
                 </ul>
+                <ul class="collapse submenu list-unstyled" id="app" data-parent="#accordionExample">
+                    <li>
+                        <a href="<?=base_url()?>administracion/categorias"> Categorias</a>
+                    </li>  
+                </ul>
             </li>
 
         </ul>

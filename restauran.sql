@@ -1,6 +1,24 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.22-MariaDB)
-# Date: 2022-04-29 00:22:57
+# Date: 2022-04-30 00:17:03
 # Generator: MySQL-Front 6.0  (Build 2.20)
+
+
+#
+# Structure for table "categorias"
+#
+
+DROP TABLE IF EXISTS `categorias`;
+CREATE TABLE `categorias` (
+  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `estado` varchar(1) DEFAULT '1' COMMENT '1=activo, 0=eliminado',
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+#
+# Data for table "categorias"
+#
 
 
 #
@@ -14,7 +32,7 @@ CREATE TABLE `mesas` (
   `capacidad` varchar(255) DEFAULT '2',
   `estado` varchar(1) DEFAULT '1' COMMENT '1=activo, 0=eliminado',
   PRIMARY KEY (`id_mesa`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 #
 # Data for table "mesas"
