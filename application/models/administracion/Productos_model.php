@@ -12,6 +12,7 @@ class Productos_model extends CI_model{
         $data['descripcion'] = $producto;
         $data['precio']     = $precio;
         $data['id_categoria']     = $categoria;
+        $data['nombre']     = $nombre;
         
         if(isset($archivo)){
             $data['img'] = $archivo;
@@ -21,11 +22,10 @@ class Productos_model extends CI_model{
             if($this->db->update('productos',$data)){
                 return array( 'estado'=>200, 'msj'=>'Almacenado con exito' );
             }else{
-                return array( 'estado'=>400, 'msj'=>'Ha ocurrido al guardar' );
+                return array( 'estado'=>400, 'msj'=>'Ha ocurrido al actualizar' );
             }
 
-        }else{
-            
+        }else{ 
             if($this->db->insert('productos',$data)){
                 return array( 'estado'=>200, 'msj'=>'Almacenado con exito' );
             }else{

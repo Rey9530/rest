@@ -11,7 +11,7 @@ function table_producto(){
                 <thead>
                     <tr>
                         <th class='text-center'>#</th>
-                        <th class='text-center'>Descripci&oacute;n</th>
+                        <th class='text-center'>Nombre</th>
                         <th class='text-center'>Precio</th>
                         <th class='text-center'>Categoria</th>
                         <th class='text-center'>Imagen</th>
@@ -25,7 +25,7 @@ function table_producto(){
                         ?> 
                         <tr>
                             <td class='text-center'> <?=$i?> </td>
-                            <td class='text-center'> <?=$item['descripcion']?> </td>
+                            <td class='text-center'> <?=$item['nombre']?> </td>
                             <td class='text-center'> <?=$item['precio']?> </td>
                             <td class='text-center'> <?=$item['categoria_descripcion']?> </td>
                             <td class='text-center'> 
@@ -115,7 +115,9 @@ function formulario_producto($id){
     $precio =0;
     $id_categoria =0;
     $img ='';
+    $nombre = '';
     foreach($data AS $item){
+        $nombre = $item['nombre'];
         $descripcion = $item['descripcion'];
         $precio = $item['precio'];
         $id_categoria = $item['id_categoria'];
@@ -125,7 +127,7 @@ function formulario_producto($id){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">producto</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Producto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
@@ -133,12 +135,17 @@ function formulario_producto($id){
                 <div class="modal-body"> 
                     <div class="row">
                         <div class="col-lg-12 col-12 mx-auto">
-                            <form method="post" id="procesar_producto" >
+                            <form method="post" id="procesar_producto" autocomplete="off" >
+                                <div class="form-group">
+                                    <p>Nombre</p>
+                                    <label for="t-text" class="sr-only">Text</label>
+                                    <input type="hidden" name="tk_" id="tk_" value="<?=$id?>">
+                                    <input id="nombre" type="text" name="nombre" value="<?=$nombre?>" placeholder="Ingrese un nombre...." class="form-control" >
+                                </div>
                                 <div class="form-group">
                                     <p>Descripci&oacute;n</p>
                                     <label for="t-text" class="sr-only">Text</label>
-                                    <input type="hidden" name="tk_" id="tk_" value="<?=$id?>">
-                                    <input id="descripcion" type="text" name="descripcion" value="<?=$descripcion?>" placeholder="Ingrese una descripcion...." class="form-control" >
+                                    <textarea id="descripcion" type="text" name="descripcion" value="<?=$descripcion?>" placeholder="Ingrese una descripcion...." class="form-control" ></textarea>
                                 </div>
                                 <div class="form-group">
                                     <p>Precio</p>
@@ -198,10 +205,10 @@ function formulario_producto($id){
                     presetFiles: [] //  an array of preset images
                 });
             function procesar_producto(){ 
-                if($("#descripcion").val().length<4){
+                if($("#nombre").val().length<4){
                     swal({
                         title: 'Ooops',
-                        text: "La descripcion no debe estar vacia!",
+                        text: "El nombre muyy corto!",
                         type: 'error',
                         padding: '2em'
                     });
@@ -213,10 +220,12 @@ function formulario_producto($id){
                 let precio = $('#precio').val(); 
                 let categoria = $('#categoria').val(); 
                 let tk_ = $('#tk_').val(); 
+                let nombre = $('#nombre').val(); 
                 formData.append("producto", producto);
                 formData.append("tk_", tk_);
                 formData.append("categoria", categoria);
                 formData.append("precio", precio);
+                formData.append("nombre", nombre);
                 if(firstUpload.cachedFileArray.length>0){
                     formData.append("archivo", firstUpload.cachedFileArray[0]);
                 }
