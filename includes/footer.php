@@ -1,3 +1,4 @@
+
 <div class="footer-wrapper">
     <div class="footer-section f-section-1">
         <p class="">Copyright © <?=date('Y')?> <a target="_blank" href="https://designreset.com">DesignReset</a>, Todos los derechos reservados.</p>
@@ -9,3 +10,51 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
+
+
+<!-- START GLOBAL MANDATORY SCRIPTS -->
+<script src="<?=base_url()?>assets/assets/js/libs/jquery-3.1.1.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?=base_url()?>assets/bootstrap/js/popper.min.js"></script>
+<script src="<?=base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="<?=base_url()?>assets/assets/js/app.js"></script>
+
+<script>
+$(document).ready(function() {
+    App.init();
+});
+</script>
+<script src="<?=base_url()?>assets/assets/js/custom.js"></script>
+<!-- END GLOBAL MANDATORY SCRIPTS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="<?=base_url()?>assets/plugins/fullcalendar/moment.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/flatpickr/flatpickr.js"></script>
+<script src="<?=base_url()?>assets/plugins/fullcalendar/fullcalendar.min.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<!--  BEGIN CUSTOM SCRIPTS FILE  -->
+<script src="<?=base_url()?>assets/plugins/fullcalendar/custom-fullcalendar.advance.js"></script>
+<!--  END CUSTOM SCRIPTS FILE  -->
+
+<!--  BEGIN CUSTOM SCRIPTS FILE  -->
+<script src="<?=base_url()?>assets/assets/js/scrollspyNav.js"></script>
+<script src="<?=base_url()?>assets/plugins/select2/custom-select.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/select2/bootstrap-select.min.js"></script>
+<!--  BEGIN CUSTOM SCRIPTS FILE  -->
+
+
+<script src="<?=base_url()?>assets/assets/js/elements/custom-search.js"></script>
+
+<script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/input-mask/input-mask.js"></script>
+
+<script src="<?=base_url()?>assets/plugins/font-icons/feather/feather.min.js"></script>
+
+<script src="<?=base_url()?>assets/plugins/sweetalerts/promise-polyfill.js"></script>
+<!-- BEGIN THEME GLOBAL STYLE -->
+<script src="<?=base_url()?>assets/assets/js/scrollspyNav.js"></script>
+<script src="<?=base_url()?>assets/plugins/sweetalerts/sweetalert2.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/sweetalerts/custom-sweetalert.js"></script>
+<!-- END THEME GLOBAL STYLE -->    
