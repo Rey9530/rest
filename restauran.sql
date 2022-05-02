@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 ﻿# Host: localhost  (Version 5.5.5-10.4.24-MariaDB)
 # Date: 2022-05-01 23:29:56
+=======
+﻿# Host: localhost  (Version 5.5.5-10.4.22-MariaDB)
+# Date: 2022-05-01 23:29:28
+>>>>>>> main
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -51,6 +56,7 @@ INSERT INTO `categorias` VALUES (1,'Desayunos','1651300345.jpg','1'),(2,'Almuerz
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
 #
+<<<<<<< HEAD
 # Structure for table "clientes"
 #
 
@@ -69,6 +75,26 @@ CREATE TABLE `clientes` (
 
 #
 # Data for table "clientes"
+=======
+# Structure for table "menu_disponibilidad"
+#
+
+DROP TABLE IF EXISTS `menu_disponibilidad`;
+CREATE TABLE `menu_disponibilidad` (
+  `id_menu` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `id_producto` int(11) DEFAULT 0,
+  `estado` varchar(1) DEFAULT '1',
+  `cantidad` varchar(255) DEFAULT '0',
+  `tipo_disponibilidad` int(11) DEFAULT 0 COMMENT '1= significa que cantidad y la fecha son las que mandan , 2= significa que las cantidades on infinita para esa misma fecha, 3= cantidad es infinita para todas las fechas',
+  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
+  `fecha_actualizacion` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id_menu`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+#
+# Data for table "menu_disponibilidad"
+>>>>>>> main
 #
 
 
@@ -103,6 +129,7 @@ CREATE TABLE `productos` (
   `estado` varchar(1) DEFAULT '1' COMMENT '1=activo, 0=eliminado',
   `precio` decimal(10,2) DEFAULT 0.00,
   `id_categoria` int(11) DEFAULT 0,
+  `estado_disponibilidad` varchar(1) DEFAULT '1' COMMENT '1= esta disponible para la venta, 0=no esta en venta',
   PRIMARY KEY (`id_producto`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
@@ -111,7 +138,7 @@ CREATE TABLE `productos` (
 #
 
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Huevos ','1 huevo estrellado con pan de caja','1651300596.jpg','1',45.00,1),(2,'Carne','2 Quesadillas con carne extra','1651300791.jpg','1',56.00,2),(3,'Cóctel de Camarones','Es un coptel de camarones','1651391365.jpg','1',9.00,5),(4,'Camarones Empanizados','Es un Camarones Empanizados','1651391401.jpg','1',10.00,5),(5,'Churrasco Teriyaki 6oz','Lomito de aguja acompañado\r\nde yuca frita','1651391459.jpg','1',17.00,2),(6,'Pamperito Mixto 6oz','Lomito de aguja acompañado\r\nde 6oz de camarones','1651391498.jfif','1',25.00,2),(7,'Entraña 8oz','Entraña 8oz','1651391555.jpg','1',30.00,3),(8,'Cerveza Corona','Cerveza Corona','1651391696.jpg','1',2.00,4),(9,'Pilsener','Serveza','1651391760.jpg','1',1.00,4);
+INSERT INTO `productos` VALUES (1,'Huevos ','1 huevo estrellado con pan de caja','1651300596.jpg','1',45.00,1,'1'),(2,'Carne','2 Quesadillas con carne extra','1651300791.jpg','1',56.00,2,'1'),(3,'Cóctel de Camarones','Es un coptel de camarones','1651391365.jpg','1',9.00,5,'1'),(4,'Camarones Empanizados','Es un Camarones Empanizados','1651391401.jpg','1',10.00,5,'1'),(5,'Churrasco Teriyaki 6oz','Lomito de aguja acompañado\r\nde yuca frita','1651391459.jpg','1',17.00,2,'1'),(6,'Pamperito Mixto 6oz','Lomito de aguja acompañado\r\nde 6oz de camarones','1651391498.jfif','1',25.00,2,'1'),(7,'Entraña 8oz','Entraña 8oz','1651391555.jpg','1',30.00,3,'1'),(8,'Cerveza Corona','Cerveza Corona','1651391696.jpg','1',2.00,4,'1'),(9,'Pilsener','Serveza','1651391760.jpg','1',1.00,4,'0');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 #
