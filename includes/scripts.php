@@ -13,3 +13,4 @@
 
 <script src="<?=base_url()?>assets/assets/js/scrollspyNav.js"></script>
 <script src="<?=base_url()?>assets/plugins/sweetalerts/sweetalert2.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/flatpickr/flatpickr.js"></script> 

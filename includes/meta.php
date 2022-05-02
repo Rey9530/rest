@@ -17,3 +17,5 @@
 
 <!--  BEGIN CUSTOM STYLE FILE  -->
 <link href="<?=base_url()?>assets/plugins/loaders/custom-loader.css" rel="stylesheet" type="text/css" />
+<link href="<?=base_url()?>assets/plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css"> 
+<link href="<?=base_url()?>assets/assets/css/forms/switches.css" rel="stylesheet" type="text/css">

@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<?php include('includes/meta.php')?>
-    <link rel="icon" type="image/x-icon" href="<?=base_url()?>assets/assets/img/favicon.ico"/>
+	<?php include('includes/meta.php')?> 
     <link href="<?=base_url()?>assets/assets/css/loader.css" rel="stylesheet" type="text/css" />
     <script src="<?=base_url()?>assets/assets/js/loader.js"></script>
     
