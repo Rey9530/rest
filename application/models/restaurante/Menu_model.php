@@ -58,7 +58,7 @@ class Menu_model extends CI_model{
             // $data = $this->db->get('menu_disponibilidad'); 
 
             $url = base_url().'archivos/productos/'.$item->img;
-            $en_venta = ($item->estado_disponibilidad==1) ? 'checked' : ''; 
+            $en_venta = ($item->estado_disponibilidad==1) ? 'checked' : '';
             $json['detalle'][] = array(
                 'nombre'=>$item->nombre,
                 'producto'=>$item->id_producto,
