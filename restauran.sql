@@ -1,8 +1,35 @@
-﻿
-# Host: localhost  (Version 5.5.5-10.4.22-MariaDB)
-# Date: 2022-05-01 23:29:28
+﻿# Host: localhost  (Version 5.5.5-10.4.24-MariaDB)
+# Date: 2022-05-03 20:00:23
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
+
+#
+# Structure for table "agenda_eventos"
+#
+
+DROP TABLE IF EXISTS `agenda_eventos`;
+CREATE TABLE `agenda_eventos` (
+  `id_agenda_reserva` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT 0,
+  `id_sucursal` int(11) DEFAULT 0,
+  `id_cliente` int(11) DEFAULT 0,
+  `numero_personas` int(11) DEFAULT 0,
+  `start` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL,
+  `fecha_capturada` datetime DEFAULT NULL,
+  `id_tipo_evento` int(11) DEFAULT 0,
+  `color_fondo` varchar(255) DEFAULT NULL,
+  `nota` text DEFAULT NULL,
+  `estado` int(11) DEFAULT 1 COMMENT '0 activo, 1 eliminado, 2 llegada, despachado',
+  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_agenda_reserva`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+#
+# Data for table "agenda_eventos"
+#
+
+INSERT INTO `agenda_eventos` VALUES (1,1,0,1,0,'2022-05-02 22:31:00','2022-05-02 22:31:00','2022-05-02 22:31:00',1,'#4361EE','',1,'2022-05-02 22:32:05'),(2,1,0,1,0,'2022-05-02 22:40:00','2022-05-02 22:40:00','2022-05-02 22:40:00',1,'#4361EE','',1,'2022-05-02 22:40:13'),(3,1,0,1,0,'2022-05-02 22:42:00','2022-05-02 22:42:00','2022-05-02 22:42:00',1,'#4361EE','',1,'2022-05-02 22:42:18'),(4,1,0,1,0,'2022-05-02 22:43:00','2022-05-02 22:43:00','2022-05-02 22:43:00',1,'#4361EE','',1,'2022-05-02 22:43:17'),(5,1,0,1,0,'2022-05-02 22:43:00','2022-05-02 22:43:00','2022-05-02 22:43:00',1,'#4361EE','',1,'2022-05-02 22:43:34');
 
 #
 # Structure for table "categorias"
@@ -26,26 +53,27 @@ INSERT INTO `categorias` VALUES (1,'Desayunos','1651300345.jpg','1'),(2,'Almuerz
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
 #
-# Structure for table "menu_disponibilidad"
+# Structure for table "clientes"
 #
 
-DROP TABLE IF EXISTS `menu_disponibilidad`;
-CREATE TABLE `menu_disponibilidad` (
-  `id_menu` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` date DEFAULT NULL,
-  `id_producto` int(11) DEFAULT 0,
-  `estado` varchar(1) DEFAULT '1',
-  `cantidad` varchar(255) DEFAULT '0',
-  `tipo_disponibilidad` int(11) DEFAULT 0 COMMENT '1= significa que cantidad y la fecha son las que mandan , 2= significa que las cantidades on infinita para esa misma fecha, 3= cantidad es infinita para todas las fechas',
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE `clientes` (
+  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT 0,
+  `nombre_cliente` varchar(255) DEFAULT NULL,
+  `telefono_cliente` varchar(255) DEFAULT NULL,
+  `dos_telefono_cliente` varchar(255) DEFAULT NULL,
+  `correo_cliente` varchar(255) DEFAULT NULL,
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
-  `fecha_actualizacion` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id_menu`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
+  PRIMARY KEY (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 #
-# Data for table "menu_disponibilidad"
+# Data for table "clientes"
 #
 
+INSERT INTO `clientes` VALUES (1,1,'Demostracion','(503) 7358-2967',NULL,'cliente@gmail.com','2022-05-01 23:34:11',1),(2,1,'Paola Maria Lopez Vasquez','(503) 6526-5662','(503) 5656-2665','cliente@gmail.com','2022-05-02 19:30:23',1);
 
 #
 # Structure for table "mesas"
@@ -64,9 +92,6 @@ CREATE TABLE `mesas` (
 # Data for table "mesas"
 #
 
-/*!40000 ALTER TABLE `mesas` DISABLE KEYS */;
-INSERT INTO `mesas` VALUES (1,'Mesa 1','4','1');
-/*!40000 ALTER TABLE `mesas` ENABLE KEYS */;
 
 #
 # Structure for table "productos"
@@ -81,7 +106,6 @@ CREATE TABLE `productos` (
   `estado` varchar(1) DEFAULT '1' COMMENT '1=activo, 0=eliminado',
   `precio` decimal(10,2) DEFAULT 0.00,
   `id_categoria` int(11) DEFAULT 0,
-  `estado_disponibilidad` varchar(1) DEFAULT '1' COMMENT '1= esta disponible para la venta, 0=no esta en venta',
   PRIMARY KEY (`id_producto`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
@@ -90,8 +114,45 @@ CREATE TABLE `productos` (
 #
 
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Huevos ','1 huevo estrellado con pan de caja','1651300596.jpg','1',45.00,1,'1'),(2,'Carne','2 Quesadillas con carne extra','1651300791.jpg','1',56.00,2,'1'),(3,'Cóctel de Camarones','Es un coptel de camarones','1651391365.jpg','1',9.00,5,'1'),(4,'Camarones Empanizados','Es un Camarones Empanizados','1651391401.jpg','1',10.00,5,'1'),(5,'Churrasco Teriyaki 6oz','Lomito de aguja acompañado\r\nde yuca frita','1651391459.jpg','1',17.00,2,'1'),(6,'Pamperito Mixto 6oz','Lomito de aguja acompañado\r\nde 6oz de camarones','1651391498.jfif','1',25.00,2,'1'),(7,'Entraña 8oz','Entraña 8oz','1651391555.jpg','1',30.00,3,'1'),(8,'Cerveza Corona','Cerveza Corona','1651391696.jpg','1',2.00,4,'1'),(9,'Pilsener','Serveza','1651391760.jpg','1',1.00,4,'0');
+INSERT INTO `productos` VALUES (1,'Huevos ','1 huevo estrellado con pan de caja','1651300596.jpg','1',45.00,1),(2,'Carne','2 Quesadillas con carne extra','1651300791.jpg','1',56.00,2),(3,'Cóctel de Camarones','Es un coptel de camarones','1651391365.jpg','1',9.00,5),(4,'Camarones Empanizados','Es un Camarones Empanizados','1651391401.jpg','1',10.00,5),(5,'Churrasco Teriyaki 6oz','Lomito de aguja acompañado\r\nde yuca frita','1651391459.jpg','1',17.00,2),(6,'Pamperito Mixto 6oz','Lomito de aguja acompañado\r\nde 6oz de camarones','1651391498.jfif','1',25.00,2),(7,'Entraña 8oz','Entraña 8oz','1651391555.jpg','1',30.00,3),(8,'Cerveza Corona','Cerveza Corona','1651391696.jpg','1',2.00,4),(9,'Pilsener','Serveza','1651391760.jpg','1',1.00,4);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+
+#
+# Structure for table "sucursales"
+#
+
+DROP TABLE IF EXISTS `sucursales`;
+CREATE TABLE `sucursales` (
+  `id_sucursal` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_sucursal` varchar(255) DEFAULT NULL,
+  `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
+  PRIMARY KEY (`id_sucursal`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+#
+# Data for table "sucursales"
+#
+
+INSERT INTO `sucursales` VALUES (1,'Sucursal 1',1),(2,'Sucursal 2',1),(3,'Sucursal 3',1);
+
+#
+# Structure for table "tipo_evento"
+#
+
+DROP TABLE IF EXISTS `tipo_evento`;
+CREATE TABLE `tipo_evento` (
+  `id_tipo_evento` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_evento` varchar(255) DEFAULT NULL,
+  `color_fondo` varchar(255) DEFAULT NULL,
+  `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
+  PRIMARY KEY (`id_tipo_evento`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+#
+# Data for table "tipo_evento"
+#
+
+INSERT INTO `tipo_evento` VALUES (1,'Personal','#4361EE',1),(2,'Trabajo','#E2A03F',1),(3,'Cita','#1ABC9C',1),(4,'Reunion','#E7515A',1),(5,'Particular','#805dca',1);
 
 #
 # Structure for table "usuarios"
@@ -114,72 +175,3 @@ CREATE TABLE `usuarios` (
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` VALUES (1,'admin','1234','Administrador','1');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-
-#
-# Structure for table "agenda_eventos"
-#
-
-DROP TABLE IF EXISTS `agenda_eventos`;
-CREATE TABLE `agenda_eventos` (
-  `id_agenda_reserva` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT 0,
-  `id_sucursal` int(11) DEFAULT 0,
-  `id_cliente` int(11) DEFAULT 0,
-  `start` datetime DEFAULT NULL,
-  `end` datetime DEFAULT NULL,
-  `fecha_capturada` datetime DEFAULT NULL,
-  `id_tipo_evento` int(11) DEFAULT 0,
-  `color_fondo` varchar(255) DEFAULT NULL,
-  `nota` text DEFAULT NULL,
-  `estado` int(11) DEFAULT 1 COMMENT '0 activo, 1 eliminado, 2 llegada, despachado',
-  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id_agenda_reserva`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
-#
-# Data for table "agenda_eventos"
-#
-
-INSERT INTO `agenda_eventos` VALUES (1,1,2,1,'2022-05-01 23:33:00','2022-05-01 23:33:00','2022-05-01 23:33:00',3,'#1ABC9C','Prueba',1,'2022-05-01 23:34:11');
-
-#
-# Structure for table "clientes"
-#
-
-DROP TABLE IF EXISTS `clientes`;
-CREATE TABLE `clientes` (
-  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT 0,
-  `nombre_cliente` varchar(255) DEFAULT NULL,
-  `numero_personas` int(11) DEFAULT 0,
-  `telefono_cliente` varchar(255) DEFAULT NULL,
-  `correo_cliente` varchar(255) DEFAULT NULL,
-  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
-  `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
-  PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
-#
-# Data for table "clientes"
-#
-
-INSERT INTO `clientes` VALUES (1,1,'Demostracion',5,'(503) 7358-2967','cliente@gmail.com','2022-05-01 23:34:11',1);
-
-#
-# Structure for table "tipo_evento"
-#
-
-DROP TABLE IF EXISTS `tipo_evento`;
-CREATE TABLE `tipo_evento` (
-  `id_tipo_evento` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_evento` varchar(255) DEFAULT NULL,
-  `color_fondo` varchar(255) DEFAULT NULL,
-  `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
-  PRIMARY KEY (`id_tipo_evento`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
-
-#
-# Data for table "tipo_evento"
-#
-
-INSERT INTO `tipo_evento` VALUES (1,'Personal','#4361EE',1),(2,'Trabajo','#E2A03F',1),(3,'Cita','#1ABC9C',1),(4,'Reunion','#E7515A',1);
