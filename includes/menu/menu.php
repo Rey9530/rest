@@ -12,12 +12,30 @@
                 </a>
             </li>
             <li class="menu">
-                <a href="<?php echo base_url(); ?>agenda/Agenda_reserva" class="dropdown-toggle">
+                <a href="#agenda"  data-toggle="collapse" aria-expanded="false"  class="dropdown-toggle">
                     <div class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar mr-2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                         <span>Agenda</span>
                     </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
                 </a>
+                <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
+                    <li>
+                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Agenda</a>
+                    </li>  
+                </ul>
+                <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
+                    <li>
+                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reporte de cliente</a>
+                    </li>  
+                </ul>
+                <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
+                    <li>
+                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reporte de reservas</a>
+                    </li>  
+                </ul>
             </li>
             <li class="menu">
                 <a href="#restaurant" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">

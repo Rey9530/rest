@@ -7,7 +7,7 @@ $(document).ready(function() {
         document.body.appendChild(btn);
     }
 
-    var idsucursal = `<?php echo $_REQUEST['ids']; ?>`;
+    var idsucursal = $('#sucursal').val();
 
     $('#calendar').fullCalendar({
         locale      : 'es',

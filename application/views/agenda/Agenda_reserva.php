@@ -7,7 +7,7 @@
         
         <!--  END CUSTOM STYLE FILE  -->          
     </head>
-    <body onload="cargarSucursalesActivas(<?=((isset($_GET['ids']))?$_GET['ids']:0)?>,1);">
+    <body>
         <?php include('includes/nav_var.php')?>
         <!--  BEGIN NAVBAR  -->
         <div class="sub-header-container">
@@ -50,7 +50,7 @@
                                                 <!--aqui pondremos el selector de las sucursales-->
                                                 <label>Sucursales:</label>
                                                 <select id="sucursal" class="form-control form-control-lg">
-                                                    
+                                                    <?php echo $sucursal; ?>
                                                 </select>
                                             </div>                                                
                                             <div class="col-md-9 col-12">

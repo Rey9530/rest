@@ -16,16 +16,5 @@ function modalEventos(start,end,id_agenda_reserva = 0){
 
 
 $('#sucursal').change(()=>{
-    window.location.href = '../agenda/Agenda_reserva?ids='+sucursal.value;
+    window.location.href = '../agenda/Agenda_reserva?ids='+$('#sucursal').val();
 });
-
-function cargarSucursalesActivas(id_sucursal = 0 ,tipo = 1){
-    $.ajax({
-        url     : '../agenda/Agenda_reserva/cargarSucursal',
-        type    : 'POST',
-        data    : {id_sucursal,tipo},
-        success : (respuesta)=>{
-            $('#sucursal').html(respuesta);
-        }
-    });
-}

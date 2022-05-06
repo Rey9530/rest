@@ -11,7 +11,10 @@ class Agenda_reserva extends CI_Controller {
 	}
 
 	public function index(){
-		$this->load->view('agenda/Agenda_reserva');
+		$datos['id_sucursal'] 	= ((isset($_GET['ids']))?$_GET['ids']:0);
+		$datos['tipo'] 			= 1;
+		$data['sucursal'] 		= $this->Agenda_reserva_model->cargarSucursal($datos);
+		$this->load->view('agenda/Agenda_reserva',$data);
 	}
 
     public function modalEventos(){
@@ -28,7 +31,7 @@ class Agenda_reserva extends CI_Controller {
 	}
 	
 	public function cargarSucursal(){
-		return $this->Agenda_reserva_model->cargarSucursal($this->input->post());
+		echo $this->Agenda_reserva_model->cargarSucursal($this->input->post());
 	}
 
 	public function cargarColorFondo(){

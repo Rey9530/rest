@@ -16,6 +16,9 @@ class Agenda_reserva_model extends CI_model{
         $e          = array();
         $x          = 0;
 
+        if($datos['ids'] > 0){
+            $this->db->where('agenda_eventos.id_sucursal',$datos['ids']);
+        }
         $this->db->where('agenda_eventos.estado != 0');
         $this->db->where('date(agenda_eventos.fecha_capturada) BETWEEN "'.$start.'" AND "'.$end.'" ');
         $this->db->join('clientes','clientes.id_cliente=agenda_eventos.id_cliente');
@@ -64,7 +67,7 @@ class Agenda_reserva_model extends CI_model{
             $seleccionar = (($datos['id_sucursal'] == $row['id_sucursal']) ? 'selected':'' );
             $opciones .= '<option '.$seleccionar.' value="'.$row['id_sucursal'].'">'.$row['nombre_sucursal'].'</option>';
         }
-        echo $opciones;
+        return $opciones;
     }
     
     public function cargarColorFondo($datos){
