@@ -18,6 +18,8 @@
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="<?=base_url()?>assets/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
     
+    <link href="<?=base_url()?>assets/assets/css/components/tabs-accordian/custom-accordions.css" rel="stylesheet" type="text/css" />
+    
 </head>
 <body>
     <!-- BEGIN LOADER -->
@@ -92,6 +94,8 @@
 
     
     <script src="<?=base_url()?>assets/plugins/file-upload/file-upload-with-preview.min.js"></script>
+    
+    <script src="<?=base_url()?>assets/assets/js/components/ui-accordions.js"></script>
     <script>
         
         $(()=>{
@@ -104,7 +108,11 @@
                 url         : '<?=base_url()?>administracion/productos/formulario_producto',
                 data		: {tk},
                 dataType    : 'html',
+                beforeSend:function(data){
+                    cargando_swal();
+                },
                 success: function(data){
+                    cargando_swal(false);
                     $("#modal").html(data);
                     $("#modal").modal();
                 }
@@ -124,6 +132,7 @@
                 }
             });
         }
+
     </script>
 </body>
 </html>

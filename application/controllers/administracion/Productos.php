@@ -60,12 +60,59 @@ class Productos extends CI_Controller {
         $resp = $this->Productos_model->eliminar_Producto($post);
 		echo json_encode($resp);
 	} 
+     
+	public function eliminar_componente()
+	{
+        $post = $this->input->post();
+        $resp = $this->Productos_model->eliminar_componente($post);
+		echo json_encode($resp);
+	} 
+     
+	public function eliminar_detalle_componente()
+	{
+        $post = $this->input->post();
+        $resp = $this->Productos_model->eliminar_detalle_componente($post);
+		echo json_encode($resp);
+	} 
+     
+	public function guardar_componente()
+	{
+        $post = $this->input->post();
+        $resp = $this->Productos_model->guardar_componente($post);
+		echo json_encode($resp);
+	} 
+     
+	public function btn_add_componente_detalle()
+	{
+        $post = $this->input->post();
+        $resp = $this->Productos_model->btn_add_componente_detalle($post);
+		echo json_encode($resp);
+	} 
     
     
 	public function formulario_Producto()
 	{
         $id = $this->input->post("tk");
         formulario_Producto($id);
+	} 
+    
+	public function componentes_producto()
+	{
+        $id = $this->input->post("tk");
+        componentes_producto($id);
+	} 
+    
+	public function load_componente_detalle()
+	{
+        $id = $this->input->post("tk");
+        load_componente_detalle($id);
+	} 
+    
+    
+	public function load_componente()
+	{
+        $id = $this->input->post("tk");
+        load_componente($id);
 	} 
     
     

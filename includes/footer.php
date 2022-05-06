@@ -9,7 +9,8 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"></div> 
+<div class="modal fade bd-example-modal-xl" id="modal_xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true"></div>
 
 
 <!-- START GLOBAL MANDATORY SCRIPTS -->
@@ -24,16 +25,51 @@
 $(document).ready(function() {
     App.init();
 });
+function cargando_swal (cargando=true){
+    if(cargando){
+        swal({
+            title: 'Procesando!',
+            text: 'Por favor espere',  
+            allowOutsideClick: false,
+            padding: '2em',
+            onOpen: function () {
+                swal.showLoading()
+            }
+        }).then(function (result) {
+                
+        })
+    }else{
+        swal.close();
+    }
+}
 </script>
 <script src="<?=base_url()?>assets/assets/js/custom.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
+<<<<<<< Updated upstream
+=======
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="<?=base_url()?>assets/plugins/fullcalendar/moment.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/flatpickr/flatpickr.js"></script>
+<script src="<?=base_url()?>assets/plugins/fullcalendar/fullcalendar.min.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+
+>>>>>>> Stashed changes
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
 <script src="<?=base_url()?>assets/assets/js/scrollspyNav.js"></script>
 <script src="<?=base_url()?>assets/plugins/select2/custom-select.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/select2/bootstrap-select.min.js"></script>
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
 
+<<<<<<< Updated upstream
+=======
+ 
+
+<script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/input-mask/input-mask.js"></script>
+
+>>>>>>> Stashed changes
 <script src="<?=base_url()?>assets/plugins/font-icons/feather/feather.min.js"></script>
 
 <script src="<?=base_url()?>assets/plugins/sweetalerts/promise-polyfill.js"></script>

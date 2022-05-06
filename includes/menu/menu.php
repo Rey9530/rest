@@ -49,6 +49,11 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="restaurant" data-parent="#accordionExample">
                     <li>
+                        <a href="<?=base_url()?>restaurante/mesas"> Mesas</a>
+                    </li>  
+                </ul> 
+                <ul class="collapse submenu list-unstyled" id="restaurant" data-parent="#accordionExample">
+                    <li>
                         <a href="<?=base_url()?>restaurante/menu"> Menu</a>
                     </li>  
                 </ul> 
