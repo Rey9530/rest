@@ -4,6 +4,16 @@
 <link href="<?=base_url()?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url()?>assets/assets/css/plugins.css" rel="stylesheet" type="text/css" />
 <!-- END GLOBAL MANDATORY STYLES -->
+
+<link href="<?=base_url()?>assets/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/regular.css">
+<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/fontawesome.css">
+
+<link href="<?=base_url()?>assets/plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+<link href="<?=base_url()?>assets/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+<link href="<?=base_url()?>assets/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+<link href="<?=base_url()?>assets/assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+        
 <!-- BEGIN PAGE LEVEL STYLE -->
 <link href="<?=base_url()?>assets/plugins/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url()?>assets/plugins/fullcalendar/custom-fullcalendar.advance.css" rel="stylesheet" type="text/css" />
@@ -24,22 +34,8 @@
             z-index: 1059;
     }
 </style>
-
 <!--  BEGIN CUSTOM STYLE FILE  -->
 <link href="<?=base_url()?>assets/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/select2/custom-select.css">
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/select2/bootstrap-select.min.css">
-<!--  END CUSTOM STYLE FILE  -->
-
-<!--  BEGIN CUSTOM STYLE FILE  -->
-<link href="<?=base_url()?>assets/assets/css/elements/search.css" rel="stylesheet" type="text/css" />
-<!--  END CUSTOM STYLE FILE  -->
-
-<link href="<?=base_url()?>assets/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/regular.css">
-<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/fontawesome.css">
-
-<link href="<?=base_url()?>assets/plugins/animate/animate.css" rel="stylesheet" type="text/css" />
-<link href="<?=base_url()?>assets/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-<link href="<?=base_url()?>assets/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
-<link href="<?=base_url()?>assets/assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+<!--  END CUSTOM STYLE FILE  -->   

@@ -28,27 +28,11 @@ $(document).ready(function() {
 <script src="<?=base_url()?>assets/assets/js/custom.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="<?=base_url()?>assets/plugins/fullcalendar/moment.min.js"></script>
-<script src="<?=base_url()?>assets/plugins/flatpickr/flatpickr.js"></script>
-<script src="<?=base_url()?>assets/plugins/fullcalendar/fullcalendar.min.js"></script>
-<!-- END PAGE LEVEL SCRIPTS -->
-
-<!--  BEGIN CUSTOM SCRIPTS FILE  -->
-<script src="<?=base_url()?>assets/plugins/fullcalendar/custom-fullcalendar.advance.js"></script>
-<!--  END CUSTOM SCRIPTS FILE  -->
-
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
 <script src="<?=base_url()?>assets/assets/js/scrollspyNav.js"></script>
 <script src="<?=base_url()?>assets/plugins/select2/custom-select.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/select2/bootstrap-select.min.js"></script>
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
-
-
-<script src="<?=base_url()?>assets/assets/js/elements/custom-search.js"></script>
-
-<script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
-<script src="<?=base_url()?>assets/plugins/input-mask/input-mask.js"></script>
 
 <script src="<?=base_url()?>assets/plugins/font-icons/feather/feather.min.js"></script>
 
@@ -58,3 +42,14 @@ $(document).ready(function() {
 <script src="<?=base_url()?>assets/plugins/sweetalerts/sweetalert2.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/sweetalerts/custom-sweetalert.js"></script>
 <!-- END THEME GLOBAL STYLE -->    
+
+        
+<script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/fullcalendar/moment.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/flatpickr/flatpickr.js"></script>
+<script src="<?=base_url()?>assets/plugins/fullcalendar/fullcalendar.min.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<!--  BEGIN CUSTOM SCRIPTS FILE  -->
+<!--  END CUSTOM SCRIPTS FILE  -->
+<script src="<?=base_url()?>js/agenda/fullcalendar.js?<?=time()?>"></script>

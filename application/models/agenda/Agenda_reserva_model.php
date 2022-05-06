@@ -107,13 +107,13 @@ class Agenda_reserva_model extends CI_model{
         $id_agenda_reserva              = $datos['id_agenda_reserva'];
 
         //=== verificamos que el id_cliente venga vacio para hacer la identificacion si el ciete ya esta registrado
-        if($datos['id_oculto'] == 0){
+        if($datos['id_oculto'] == 1){
 
-            $cliente['nombre_cliente']    = $datos['nombre_cliente'];
-            $cliente['numero_personas']   = $datos['numero_personas'];
-            $cliente['telefono_cliente']  = $datos['telefono_cliente'];
-            $cliente['correo_cliente']    = $datos['correo_cliente'];
-            $cliente['id_usuario']        = $this->usuario['id_usuario'];
+            $cliente['nombre_cliente']          = $datos['nombre_cliente'];
+            $cliente['telefono_cliente']        = $datos['telefono_cliente'];
+            $cliente['dos_telefono_cliente']    = $datos['dos_telefono_cliente'];
+            $cliente['correo_cliente']          = $datos['correo_cliente'];
+            $cliente['id_usuario']              = $this->usuario['id_usuario'];
 
             if($this->db->insert('clientes',$cliente)){
                 $datos['id_cliente'] = $this->db->insert_id();
@@ -130,8 +130,8 @@ class Agenda_reserva_model extends CI_model{
         unset($datos['hora']);
         unset($datos['id_agenda_reserva']);
         unset($datos['nombre_cliente']);
-        unset($datos['numero_personas']);
         unset($datos['telefono_cliente']);
+        unset($datos['dos_telefono_cliente']);
         unset($datos['correo_cliente']);
 
         //== identidicador para verificar en que momento crear un evento o solo actualizar un existente

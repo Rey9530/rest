@@ -9,17 +9,14 @@ function modalEventos(start,end,id_agenda_reserva = 0){
         },
         success : (respuesta)=>{
             $('#modal-celandario').html(respuesta);
-            $('#modal-celandario').modal({});
+            $('#modal-celandario').modal({backdrop: 'static', keyboard: false});
         }
     });
 }
 
-$(()=>{
-    cargarSucursalesActivas();
-});
 
 $('#sucursal').change(()=>{
-    $('#calendar').fullCalendar("refetchEvents");
+    window.location.href = '../agenda/Agenda_reserva?ids='+sucursal.value;
 });
 
 function cargarSucursalesActivas(id_sucursal = 0 ,tipo = 1){

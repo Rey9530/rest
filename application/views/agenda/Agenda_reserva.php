@@ -3,9 +3,11 @@
 <html lang="es">
     <head>  
 	    <?php include('includes/meta.php')?>   
-	    <?php include('includes/header.php')?>           
+	    <?php include('includes/header.php')?>
+        
+        <!--  END CUSTOM STYLE FILE  -->          
     </head>
-    <body>
+    <body onload="cargarSucursalesActivas(<?=((isset($_GET['ids']))?$_GET['ids']:0)?>,1);">
         <?php include('includes/nav_var.php')?>
         <!--  BEGIN NAVBAR  -->
         <div class="sub-header-container">
@@ -68,8 +70,7 @@
             </div>
         </div>
         <!--  END CONTENT AREA  -->
-        
-        <script src="<?=base_url()?>js/agenda/fullcalendar.js?<?=time()?>"></script>
+
         <script src="<?=base_url()?>js/agenda/Agenda_eventos.js?<?=time()?>"></script>
     </body>
 </html>

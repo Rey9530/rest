@@ -3,10 +3,11 @@ $(document).ready(function() {
      function createBackdropElement () {
         var btn = document.createElement("div");
         btn.setAttribute('class', 'modal-backdrop fade show')
+        btn.css('background-color', '#BFC9CA')
         document.body.appendChild(btn);
     }
 
-    var sucursal = $('#sucursal').val();
+    var idsucursal = `<?php echo $_REQUEST['ids']; ?>`;
 
     $('#calendar').fullCalendar({
         locale      : 'es',
@@ -16,22 +17,22 @@ $(document).ready(function() {
             center  : 'title',
             right   : 'month,agendaWeek,agendaDay'
         },
-        events      : '../agenda/Agenda_reserva/cargarAgendaReserva?ids='+sucursal,
+        events      : '../agenda/Agenda_reserva/cargarAgendaReserva?ids='+idsucursal,
         droppable   : true, // this allows things to be dropped onto the calendar !!!
         eventLimit  : true, // allow "more" link when too many events
         selectable  : true,
-        dayClick    : (date, view,start, end)=> {
-            var start2   = moment(start).format('YYYY-MM-DD HH:mm:ss');
-            var end     = moment(end).format('YYYY-MM-DD HH:mm:ss');
+        dayClick    : function (date, jsEvent, view) {
+            var start2      = date.format('YYYY-MM-DD HH:mm:ss');
+            var end         = date.format('YYYY-MM-DD HH:mm:ss');
             //=== aqui colocaremos la funcion para agregar
             //==  eventos con fecha seleccionada
             // console.log('Agregar eventos');
             modalEventos(start2,end);
         },
-        eventClick  : function(calEvent, jsEvent, view) {
-            var start2                = moment(calEvent.start).format('YYYY-MM-DD HH:mm:ss');
-            var end                   = moment(calEvent.end).format('YYYY-MM-DD HH:mm:ss');
-            var id_agenda_reserva     = calEvent.id_agenda_reserva;
+        eventClick  : function(event, delta, revertFunc) {
+            var start2                = '';
+            var end                   = '';
+            var id_agenda_reserva     = event.id_agenda_reserva;
             //=== aqui colocaremos la funcion para agregar
             modalEventos(start2,end,id_agenda_reserva);
         },

@@ -1,5 +1,9 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.24-MariaDB)
+<<<<<<< Updated upstream
 # Date: 2022-05-03 20:00:23
+=======
+# Date: 2022-05-05 21:13:53
+>>>>>>> Stashed changes
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -23,13 +27,20 @@ CREATE TABLE `agenda_eventos` (
   `estado` int(11) DEFAULT 1 COMMENT '0 activo, 1 eliminado, 2 llegada, despachado',
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_agenda_reserva`)
+<<<<<<< Updated upstream
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+>>>>>>> Stashed changes
 
 #
 # Data for table "agenda_eventos"
 #
 
+<<<<<<< Updated upstream
 INSERT INTO `agenda_eventos` VALUES (1,1,0,1,0,'2022-05-02 22:31:00','2022-05-02 22:31:00','2022-05-02 22:31:00',1,'#4361EE','',1,'2022-05-02 22:32:05'),(2,1,0,1,0,'2022-05-02 22:40:00','2022-05-02 22:40:00','2022-05-02 22:40:00',1,'#4361EE','',1,'2022-05-02 22:40:13'),(3,1,0,1,0,'2022-05-02 22:42:00','2022-05-02 22:42:00','2022-05-02 22:42:00',1,'#4361EE','',1,'2022-05-02 22:42:18'),(4,1,0,1,0,'2022-05-02 22:43:00','2022-05-02 22:43:00','2022-05-02 22:43:00',1,'#4361EE','',1,'2022-05-02 22:43:17'),(5,1,0,1,0,'2022-05-02 22:43:00','2022-05-02 22:43:00','2022-05-02 22:43:00',1,'#4361EE','',1,'2022-05-02 22:43:34');
+=======
+>>>>>>> Stashed changes
 
 #
 # Structure for table "categorias"
@@ -67,13 +78,20 @@ CREATE TABLE `clientes` (
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
   PRIMARY KEY (`id_cliente`)
+<<<<<<< Updated upstream
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+>>>>>>> Stashed changes
 
 #
 # Data for table "clientes"
 #
 
+<<<<<<< Updated upstream
 INSERT INTO `clientes` VALUES (1,1,'Demostracion','(503) 7358-2967',NULL,'cliente@gmail.com','2022-05-01 23:34:11',1),(2,1,'Paola Maria Lopez Vasquez','(503) 6526-5662','(503) 5656-2665','cliente@gmail.com','2022-05-02 19:30:23',1);
+=======
+>>>>>>> Stashed changes
 
 #
 # Structure for table "mesas"
