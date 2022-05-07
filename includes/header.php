@@ -5,10 +5,6 @@
 <link href="<?=base_url()?>assets/assets/css/plugins.css" rel="stylesheet" type="text/css" />
 <!-- END GLOBAL MANDATORY STYLES -->
 
-<link href="<?=base_url()?>assets/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/regular.css">
-<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/fontawesome.css">
-
 <link href="<?=base_url()?>assets/plugins/animate/animate.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url()?>assets/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url()?>assets/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
@@ -38,21 +34,7 @@
 <link href="<?=base_url()?>assets/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/select2/custom-select.css">
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/select2/bootstrap-select.min.css">
-<<<<<<< Updated upstream
-<!--  END CUSTOM STYLE FILE  -->   
-=======
-<!--  END CUSTOM STYLE FILE  -->
+<!--  END CUSTOM STYLE FILE  -->  
 
-<!--  BEGIN CUSTOM STYLE FILE  -->
-<link href="<?=base_url()?>assets/assets/css/elements/search.css" rel="stylesheet" type="text/css" />
-<!--  END CUSTOM STYLE FILE  -->
-
-<link href="<?=base_url()?>assets/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/regular.css">
-<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/fontawesome.css">
-
-<link href="<?=base_url()?>assets/plugins/animate/animate.css" rel="stylesheet" type="text/css" />
-<link href="<?=base_url()?>assets/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-<link href="<?=base_url()?>assets/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
-<link href="<?=base_url()?>assets/assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
->>>>>>> Stashed changes
+<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/font-awesome.css">
+<link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/font-awesome.min.css">

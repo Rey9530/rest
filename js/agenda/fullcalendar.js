@@ -1,9 +1,8 @@
 $(document).ready(function() {
-     // Create BackDrop ( Overlay ) Element
+     //== Crear elemento BackDrop ( Overlay )
      function createBackdropElement () {
         var btn = document.createElement("div");
         btn.setAttribute('class', 'modal-backdrop fade show')
-        btn.css('background-color', '#BFC9CA')
         document.body.appendChild(btn);
     }
 
@@ -44,14 +43,15 @@ $(document).ready(function() {
             $(this).attr('id', event.id);
 
             $('#'+event.id).popover({
-                template    : '<div style="border: 1px solid black !important;" class="popover popover-primary" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
+                template    : '<div class="popover popover-primary" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
                 title       : event.title,
                 content     : event.description,
-                placement   : 'top',
+                placement   : 'auto',
             });
 
-            // $('.popover').css({'border':'1px solid black !important'});
             $('#'+event.id).popover('show');
+            $('.popover-header').css('background-color',event.backgroundColor);
+            $('.popover').css('border','1px solid '+event.backgroundColor);
         },
         eventMouseout   : function(event, jsEvent, view) {
             //==ocultamos la ventanita

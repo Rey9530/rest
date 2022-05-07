@@ -4,7 +4,6 @@
     <head>  
 	    <?php include('includes/meta.php')?>   
 	    <?php include('includes/header.php')?>
-        
         <!--  END CUSTOM STYLE FILE  -->          
     </head>
     <body>
@@ -63,7 +62,8 @@
                         </div>
 
                         <!-- The Modal -->
-                        <div id="modal-celandario" class="modal animated fadeIn"> </div>
+                        <div id="modal-celandario" class="modal animated zoomInUp custo-zoomInUp"> </div>
+                        <div id="modal-whatsapp" class="modal animated rotateInDownLeft custo-rotateInDownLeft"> </div>
                     </div>
                 </div>
                 <?php include('includes/footer.php'); ?>
@@ -72,5 +72,6 @@
         <!--  END CONTENT AREA  -->
 
         <script src="<?=base_url()?>js/agenda/Agenda_eventos.js?<?=time()?>"></script>
+        <script src="<?=base_url()?>js/agenda/fullcalendar.js?<?=time()?>"></script>
     </body>
 </html>

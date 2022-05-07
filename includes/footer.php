@@ -46,30 +46,12 @@ function cargando_swal (cargando=true){
 <script src="<?=base_url()?>assets/assets/js/custom.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-<<<<<<< Updated upstream
-=======
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="<?=base_url()?>assets/plugins/fullcalendar/moment.min.js"></script>
-<script src="<?=base_url()?>assets/plugins/flatpickr/flatpickr.js"></script>
-<script src="<?=base_url()?>assets/plugins/fullcalendar/fullcalendar.min.js"></script>
-<!-- END PAGE LEVEL SCRIPTS -->
-
-
->>>>>>> Stashed changes
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
 <script src="<?=base_url()?>assets/assets/js/scrollspyNav.js"></script>
 <script src="<?=base_url()?>assets/plugins/select2/custom-select.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/select2/bootstrap-select.min.js"></script>
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
 
-<<<<<<< Updated upstream
-=======
- 
-
-<script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
-<script src="<?=base_url()?>assets/plugins/input-mask/input-mask.js"></script>
-
->>>>>>> Stashed changes
 <script src="<?=base_url()?>assets/plugins/font-icons/feather/feather.min.js"></script>
 
 <script src="<?=base_url()?>assets/plugins/sweetalerts/promise-polyfill.js"></script>
@@ -88,4 +70,3 @@ function cargando_swal (cargando=true){
 
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
 <!--  END CUSTOM SCRIPTS FILE  -->
-<script src="<?=base_url()?>js/agenda/fullcalendar.js?<?=time()?>"></script>

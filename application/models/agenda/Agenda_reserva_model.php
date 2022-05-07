@@ -164,4 +164,21 @@ class Agenda_reserva_model extends CI_model{
         $this->db->join('tipo_evento','tipo_evento.id_tipo_evento=agenda_eventos.id_tipo_evento');
         return (array) $this->db->get('agenda_eventos')->row();
     }
+
+    public function cargarTitulosMensajes(){
+        $opciones = '<option value="">Seleccione un mensaje</option>';
+
+        $this->db->where('estado',1);
+        $mensaje = $this->db->get('mensaje_whatsapp')->result_array();
+        foreach($mensaje as $row){
+            $opciones .= '<option value="'.$row['id_mensaje'].'">'.$row['titulo_mensaje'].'</option>';
+        }
+        echo $opciones;
+    }
+
+    public function cargarMensaje($datos){
+        $this->db->select('contenido_mensaje');
+        $this->db->where('id_mensaje',$datos['id_mensaje']);
+        echo    json_encode($this->db->get('mensaje_whatsapp')->row());
+    }
 }

@@ -1,7 +1,51 @@
 <?php
 
+function enviarWharsapp($datos){
+    $CI             =& get_instance();
+    ?>
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mensaje para WhatsApp</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <label for="mensaje" class="control-label">Numero WhatsApp <span style="color: red;">*</span>:</label>
+                        <input id="telefono_cliente" class="form-control celular" value="<?=$datos['telefono_cliente']?>">
+                    </div>
+                    <div class="col-md-12 pt-4">
+                        <label for="mensaje" class="control-label">Seleccionar Mensaje <span style="color: red;">*</span>:</label>
+                        <select id="id_mensaje" class="form-control" onchange="cargarMensaje();"></select>
+                    </div>
+                    <div class="col-md-12 pt-4">
+                        <label for="mensaje" class="control-label">Mensaje <span style="color: red;">*</span>:</label>
+                        <div class="form-group">
+                            <textarea rows="8" class="form-control" id="mensaje" aria-describedby="emailHelp1" placeholder="Escriba su mensaje!"></textarea>
+                            <small id="emailHelp1" class="form-text text-muted">Este mensaje se enviara al cliente, por favor sea cortez.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>
+                    <button type="button" class="btn btn-dark" onclick="enviarMensaje();"><i class="fa fa-send"></i> Enviar</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(()=>{
+                cargarTitulosMensajes();
+            });
+
+            $(".celular").inputmask({mask:"(503) 9999-9999"});
+        </script>
+    <?php
+}
+
 function modalEventos($datos){
-    $CI     =& get_instance();
+    $CI             =& get_instance();
 
     $fecha_inicio   = date('d-m-Y',strtotime($datos['start']));
     $hora           = date('H:i',strtotime($datos['end']));
@@ -18,8 +62,8 @@ function modalEventos($datos){
                         <div class="add-edit-event-content">
                             <h5 class="add-event-title modal-title">Agenda Reserva</h5>
                             <form id="formularioEventos" autocomplete="off">
-                                <input hidden name="id_agenda_reserva" value="<?=$datos['id_agenda_reserva']?>">
-                                <input hidden id="id_oculto" name="id_oculto" value="<?=((isset($evento['id_cliente']))?$evento['id_cliente']:0)?>">
+                                <input hidden name="id_agenda_reserva" id="id_agenda_reserva" value="<?=$datos['id_agenda_reserva']?>">
+                                <input hidden id="id_oculto" name="id_oculto" value="0">
 
                                 <div class="row mt-3">
                                     <div class="col-md-12 col-sm-12 col-12">
@@ -141,18 +185,13 @@ function modalEventos($datos){
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal">Descartar</button>
-                    <button class="btn btn-info" onclick="guardarReserva();" type="button">Guardar</button>
+                    <button class="btn btn-success" onclick="enviarWharsapp(<?=$datos['id_agenda_reserva']?>);" style="display: none;" id="envio"><i class="fa fa-whatsapp"></i> Enviar recordatorio</button>
+                    <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
+                    <button class="btn btn-info" onclick="guardarReserva();" type="button"><i class="fa fa-save"></i> Guardar</button>
                 </div>
             </div>
         </div>
         <script>
-            
-            $(document).ready(function() {
-                $("#buscar").change(function() {
-                    $('#id_oculto').val($('#buscar').val());
-                });
-            });
 
             var id_tipo_evento  = "<?=((isset($evento['id_tipo_evento']))?$evento['id_tipo_evento']:'0')?>";
             var id_sucursal     = "<?=((isset($evento['id_sucursal']))?$evento['id_sucursal']:'0')?>";
@@ -162,7 +201,14 @@ function modalEventos($datos){
                 cargarTipoEvento(id_tipo_evento);
                 cargarbuscador(nombre_cliente);
                 cargarSucursal(id_sucursal);
+                mostrarBotonWhatsapp(<?=$datos['id_agenda_reserva']?>);
             });
+
+            function mostrarBotonWhatsapp(id=0){
+                if(id > 0){
+                    $('#envio').slideDown();
+                }
+            }
             
             setTimeout(() => {
                 if(id_tipo_evento > 0){
@@ -172,7 +218,7 @@ function modalEventos($datos){
 
             function guardarReserva(){
 
-                if(id_oculto.value == 0 && buscar.value == ''){
+                if(id_oculto.value == 0 && buscar.value == ''  && id_agenda_reserva.value == 0){
                     swal({
                         title       : 'Debes seleccionar un cliente',
                         animation   : false,
@@ -223,8 +269,8 @@ function modalEventos($datos){
                     type    :  'post',
                     data    : $('#formularioEventos').serialize(),
                     success : (respuesta)=>{
-                        $('#calendar').fullCalendar("refetchEvents");
                         $('#modal-celandario').modal('hide');
+                        $('#calendar').fullCalendar("refetchEvents");
                         if(respuesta == 200){
                             swal({
                                 title       : 'Datos almacenados con exito!',
@@ -281,6 +327,7 @@ function modalEventos($datos){
                 $('#buscar').prop('readonly',true);
                 $('#id_oculto').val(1);
             }
+
             function ocultarCamposOcultos(){
                 $('#camposCliente').slideUp();
                 $('#oculto').attr({onclick: 'mostrarCamposOcultos();'});

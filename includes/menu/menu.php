@@ -23,17 +23,17 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
                     <li>
-                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Agenda</a>
+                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reverva de eventos</a>
                     </li>  
                 </ul>
                 <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
                     <li>
-                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reporte de cliente</a>
+                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reporte de clientes</a>
                     </li>  
                 </ul>
                 <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
                     <li>
-                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reporte de reservas</a>
+                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reporte de reservas de eventos</a>
                     </li>  
                 </ul>
             </li>
