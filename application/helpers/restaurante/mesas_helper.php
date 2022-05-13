@@ -185,6 +185,7 @@ function detalle_cuenta($tk_cuenta){
                             success: function(data){
                                 cargando_swal(false);
                                 if(data.estado==200){  
+                                    $('#modal').modal('hide');
                                     if(window.obtener_mesas){
                                         obtener_mesas();
                                     }

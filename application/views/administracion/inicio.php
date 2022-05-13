@@ -100,7 +100,7 @@
                             <div class="widget-content">
                                 <div class="w-header">
                                     <div class="w-info">
-                                        <h6 class="value">Expenses</h6>
+                                        <h6 class="value">Capacidad del Restaurante</h6>
                                     </div>
                                     <div class="task-action">
                                         <div class="dropdown">
@@ -116,23 +116,26 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="w-content">
-
-                                    <div class="w-info">
-                                        <p class="value">$ 45,141 <span>this week</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></p>
-                                    </div>
+ 
+                                <?php
                                     
-                                </div>
-
+                                    $query = $this->db->query('SELECT COUNT(*) AS capacidad FROM mesas WHERE estado=1')->result_array();
+                                    $mesas_total = (count($query)>0)?$query[0]['capacidad']:0;
+                                    $porsentaje = 0;
+                                    $query = $this->db->query('SELECT COUNT(*) AS capacidad FROM mesas_cuentas INNER JOIN mesas ON mesas_cuentas.id_mesa=mesas.id_mesa WHERE mesas_cuentas.estado=1')->result_array();
+                                    $valor = (count($query)>0)?$query[0]['capacidad']:0;
+                                    if($valor>0 && $mesas_total>0){
+                                        $porsentaje = ($valor*100)/$mesas_total;
+                                    }
+                                ?>
                                 <div class="w-progress-stats">                                            
                                     <div class="progress">
-                                        <div class="progress-bar bg-gradient-secondary" role="progressbar" style="width: 57%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-gradient-secondary" role="progressbar" style="width: <?=$porsentaje?>%" aria-valuenow="<?=$porsentaje?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
 
                                     <div class="">
                                         <div class="w-icon">
-                                            <p>57%</p>
+                                            <p><?=$porsentaje?>%</p>
                                         </div>
                                     </div>
                                     
@@ -150,20 +153,14 @@
                                             <h5 class="">Total Balance</h5>
                                         </div>
                                         <div class="inv-balance-info">
-
-                                            <p class="inv-balance">$ 41,741.42</p>
+                                            <?php
+                                                $query = $this->db->query('SELECT SUM(sub_total) AS total FROM ordenes_restaurante_detalle WHERE estado=1')->result_array();
+                                                $venta = (count($query)>0)?$query[0]['total']:0;
                                             
-                                            <span class="inv-stats balance-credited">+ 2453</span>
-                                            
+                                            ?>
+                                            <p class="inv-balance">$ <?=$venta?></p> 
                                         </div>
-                                    </div>
-                                    <div class="acc-action">
-                                        <div class="">
-                                            <a href="<?=base_url()?>assets/javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
-                                            <a href="<?=base_url()?>assets/javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
-                                        </div>
-                                        <a href="<?=base_url()?>assets/javascript:void(0);">Upgrade</a>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
