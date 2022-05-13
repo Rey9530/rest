@@ -13,8 +13,8 @@ function enviarWharsapp($datos){
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12">
-                        <label for="mensaje" class="control-label">Numero WhatsApp <span style="color: red;">*</span>:</label>
-                        <input id="telefono_cliente" class="form-control celular" value="<?=$datos['telefono_cliente']?>">
+                        <label for="telefono_cliente" class="control-label">Numero WhatsApp <span style="color: red;">*</span>:</label>
+                        <input type="text" id="numero_celular" class="form-control celular" value="<?=$datos['telefono_cliente']?>">
                     </div>
                     <div class="col-md-12 pt-4">
                         <label for="mensaje" class="control-label">Seleccionar Mensaje <span style="color: red;">*</span>:</label>
@@ -30,7 +30,7 @@ function enviarWharsapp($datos){
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>
-                    <button type="button" class="btn btn-dark" onclick="enviarMensaje();"><i class="fa fa-send"></i> Enviar</button>
+                    <button type="button" class="btn btn-dark" onclick="enviarMensaje(numero_celular.value,mensaje.value);"><i class="fa fa-send"></i> Enviar</button>
                 </div>
             </div>
         </div>
@@ -38,6 +38,18 @@ function enviarWharsapp($datos){
             $(()=>{
                 cargarTitulosMensajes();
             });
+            
+            // var quill = new Quill('#mensaje', {
+            //     modules: {
+            //     toolbar: [
+            //         [{ header: [1, 2, false] }],
+            //         ['bold', 'italic', 'underline'],
+            //         ['image', 'code-block']
+            //     ]
+            //     },
+            //     placeholder: 'Compose an epic...',
+            //     theme: 'snow'  // or 'bubble'
+            // });
 
             $(".celular").inputmask({mask:"(503) 9999-9999"});
         </script>
@@ -271,31 +283,7 @@ function modalEventos($datos){
                     success : (respuesta)=>{
                         $('#modal-celandario').modal('hide');
                         $('#calendar').fullCalendar("refetchEvents");
-                        if(respuesta == 200){
-                            swal({
-                                title       : 'Datos almacenados con exito!',
-                                animation   : false,
-                                customClass : 'animated tada',
-                                padding     : '2em',
-                                text        : 'Cerraré en 3 segundos.',
-                                timer       : 3000,
-                                onOpen      : function () {
-                                    swal.showLoading()
-                                }
-                            });
-                        }else{
-                            swal({
-                                title       : 'Algo salio mal contacte al proveedor!',
-                                animation   : false,
-                                customClass : 'animated tada',
-                                padding     : '2em',
-                                text        : 'Cerraré en 3 segundos.',
-                                timer       : 3000,
-                                onOpen      : function () {
-                                    swal.showLoading()
-                                }
-                            });
-                        }
+                        mensajeRespuesta(respuesta);
                     }
                 });
             }

@@ -4,6 +4,7 @@ class Agenda_reserva_model extends CI_model{
 
     public function __construct(){
         parent:: __construct();
+        $this->load->model('Bitacora_model');
         $this->load->model('Iniciar_sesion_model');
         $this->usuario  = $this->Iniciar_sesion_model->obtener_session();
     }
@@ -120,6 +121,8 @@ class Agenda_reserva_model extends CI_model{
 
             if($this->db->insert('clientes',$cliente)){
                 $datos['id_cliente'] = $this->db->insert_id();
+                $accion_realizada = 'Registro un nuevo cliente ID '.$datos['id_cliente'].', con nombre: '.$datos['nombre_cliente'];
+                $this->Bitacora_model->registroAcciones($accion_realizada);
             }else{
                 return false;
             }
@@ -143,17 +146,20 @@ class Agenda_reserva_model extends CI_model{
             $datos['id_usuario']    = $this->usuario['id_usuario'];
             if($this->db->insert('agenda_eventos',$datos)){
                 echo 200;
+                $accion_realizada = 'Registro una nueva reverva ID '.$this->db->insert_id().', para el cliente ID '.$datos['id_cliente'];
             }
         }else{
             
             // validamos que siempre venga con id de cliente para que no se pierda el evento
             if(empty($datos['id_cliente'])) unset($datos['id_cliente']);
-
+            
             $this->db->where('id_agenda_reserva',$id_agenda_reserva);
             if($this->db->update('agenda_eventos',$datos)){
                 echo 200;
+                $accion_realizada = 'Actualizo la nueva reverva ID '.$this->db->insert_id().', de el cliente ID '.$datos['id_cliente'];
             }
         }
+        $this->Bitacora_model->registroAcciones($accion_realizada);
     }
 
     public function obtenerReserva($id_agenda_reserva){

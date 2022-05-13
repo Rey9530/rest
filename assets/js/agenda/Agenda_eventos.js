@@ -47,13 +47,16 @@ function cargarMensaje(){
         dataType    : 'JSON',
         data        : {id_mensaje},
         success     : (respuesta)=>{
-            $('#mensaje').html(respuesta.contenido_mensaje);
+            $('#mensaje').val(respuesta.contenido_mensaje);
         }
     });
 }
 
-function enviarMensaje(){
-    window.open('https://api.whatsapp.com/send?phone=50371829992&text=Hola.');
+function enviarMensaje(tel,mensaje){
+    var cel = tel.replace('(','').replace(')','').replace(' ','').replace('-','');
+    var test = mensaje.replace('\n','%0A').replace('\n','%0A').replace('\n','%0A').replace('\n','%0A').replace('\n','%0A');
+    $('#modal-whatsapp').modal('hide');
+    window.open('https://api.whatsapp.com/send?phone='+cel+'&text='+test);
 }
 
 $('#sucursal').change(()=>{

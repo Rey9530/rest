@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.24-MariaDB)
-# Date: 2022-05-06 23:52:50
+# Date: 2022-05-12 20:26:20
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -23,13 +23,33 @@ CREATE TABLE `agenda_eventos` (
   `estado` int(11) DEFAULT 1 COMMENT '0 activo, 1 eliminado, 2 llegada, despachado',
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_agenda_reserva`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 #
 # Data for table "agenda_eventos"
 #
 
-INSERT INTO `agenda_eventos` VALUES (1,1,2,6,4,'2022-05-06 19:01:00','2022-05-06 19:01:00','2022-05-06 19:01:00',3,'#1ABC9C','Prueba',1,'2022-05-05 21:53:33'),(2,1,3,1,2,'2022-05-07 00:00:00','2022-05-07 00:00:00','2022-05-07 00:00:00',2,'#E2A03F','Nuevo empleo',1,'2022-05-06 20:46:23'),(3,1,3,5,5,'2022-05-12 00:00:00','2022-05-12 00:00:00','2022-05-12 00:00:00',5,'#805dca','Prueba',1,'2022-05-06 20:48:52');
+INSERT INTO `agenda_eventos` VALUES (1,1,2,6,4,'2022-05-06 19:01:00','2022-05-06 19:01:00','2022-05-06 19:01:00',3,'#1ABC9C','Prueba',1,'2022-05-05 21:53:33'),(2,1,3,1,2,'2022-05-07 00:00:00','2022-05-07 00:00:00','2022-05-07 00:00:00',2,'#E2A03F','Nuevo empleo',1,'2022-05-06 20:46:23'),(3,1,3,5,5,'2022-05-12 00:00:00','2022-05-12 00:00:00','2022-05-12 00:00:00',5,'#805dca','Prueba',1,'2022-05-06 20:48:52'),(4,1,2,7,2,'2022-05-10 20:00:00','2022-05-10 20:00:00','2022-05-10 20:00:00',1,'#4361EE','El día de las madres',1,'2022-05-09 23:31:33');
+
+#
+# Structure for table "bitacora"
+#
+
+DROP TABLE IF EXISTS `bitacora`;
+CREATE TABLE `bitacora` (
+  `id_bitacora` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT 0,
+  `id_sucursal` int(11) DEFAULT 0,
+  `accion_realizada` text DEFAULT NULL,
+  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_bitacora`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+
+#
+# Data for table "bitacora"
+#
+
+INSERT INTO `bitacora` VALUES (1,1,1,'Actualizo el nuevo mensaje ID 2, con titulo de: Mensaje de cancelación.','2022-05-09 23:18:15'),(2,1,1,'Cambio el mensaje ID 2, a estado: inhabilito','2022-05-09 23:22:00'),(3,1,1,'Registro un nuevo cliente ID7, con nombre: Juana Maria Vasquez lopez','2022-05-09 23:31:33'),(4,1,1,'Registro una nueva reverva ID4, para el cliente ID 7','2022-05-09 23:31:33'),(5,1,1,'Se han realizado intentos de ingresos con el usuario: ADMIN','2022-05-10 09:39:28'),(6,1,1,'A ingresado al sistema','2022-05-10 09:41:26'),(7,1,1,'¡Aviso! Se ha realizado un intento de ingreso al sisterma con el usuario: ADMIN','2022-05-10 09:41:46'),(8,1,1,'A ingresado al sistema','2022-05-10 09:46:30'),(9,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:30'),(10,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:39'),(11,1,1,'Elimino el registro del cliente ID: 6','2022-05-10 16:04:17'),(12,1,1,'A ingresado al sistema','2022-05-11 20:45:34');
 
 #
 # Structure for table "categorias"
@@ -67,13 +87,13 @@ CREATE TABLE `clientes` (
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
   PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 #
 # Data for table "clientes"
 #
 
-INSERT INTO `clientes` VALUES (1,1,'Diego Arturo Lopez Vasquez','(503) 7358-2967','','','2022-05-05 21:53:33',1),(5,1,'Veronica Fernanda Hernadez Ramoz','(503) 7485-1564','','','2022-05-06 20:42:48',1),(6,1,'Paola Maria Lope Vasquez','(503) 6104-4860','','','2022-05-06 23:30:19',1);
+INSERT INTO `clientes` VALUES (1,1,'Diego Arturo Lopez Vasquez','(503) 7358-2967','','','2022-05-05 21:53:33',1),(5,1,'Veronica Fernanda Hernadez Ramoz','(503) 7485-1564','','','2022-05-06 20:42:48',1),(6,1,'Paola Maria Lope Vasquez','(503) 6104-4860','','','2022-05-06 23:30:19',1),(7,1,'Juana Maria Vasquez lopez','(503) 6515-1515','','','2022-05-09 23:31:33',1);
 
 #
 # Structure for table "mensaje_whatsapp"
@@ -89,13 +109,13 @@ CREATE TABLE `mensaje_whatsapp` (
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
   PRIMARY KEY (`id_mensaje`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 #
 # Data for table "mensaje_whatsapp"
 #
 
-INSERT INTO `mensaje_whatsapp` VALUES (1,'Recordatorio de reserva','Muy buenos días estimado cliente, le recordamos que tiene una cita este día un reserva.\n\nEsperamos su confirmación. 🙌❤',1,1,'2022-05-06 22:41:09',1);
+INSERT INTO `mensaje_whatsapp` VALUES (1,'Recordatorio de reserva','Muy buenos días estimado cliente, le recordamos que tiene una reserva este día.\r\n\r\nEsperamos su confirmación. 🙌❤',1,1,'2022-05-06 22:41:09',1),(2,'Mensaje de cancelación.','Estimado cliente su reversa fue calenda por no llevar a tiempo.\r\n\r\nTenga un feliz día 🙌✔🐱‍🐉.',1,1,'2022-05-08 13:41:11',0);
 
 #
 # Structure for table "menu_disponibilidad"
@@ -130,7 +150,7 @@ CREATE TABLE `mesas` (
   `capacidad` varchar(255) DEFAULT '2',
   `estado` varchar(1) DEFAULT '1' COMMENT '1=activo, 0=eliminado',
   PRIMARY KEY (`id_mesa`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "mesas"
@@ -321,6 +341,7 @@ CREATE TABLE `usuarios` (
   `clave` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT '',
   `estado` varchar(1) DEFAULT '1' COMMENT '1=Activo, 1=Eliminado',
+  `id_sucursal` int(11) DEFAULT 1,
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -329,5 +350,5 @@ CREATE TABLE `usuarios` (
 #
 
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'admin','1234','Administrador','1');
+INSERT INTO `usuarios` VALUES (1,'admin','1234','Administrador','1',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;

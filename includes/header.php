@@ -21,13 +21,18 @@
 <style>
     .widget { margin-bottom: 10px; }
     .widget {
-        margin-bottom: 10px;
-        border: none;
-        box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) 0px 16px 32px -4px;
+        margin-bottom   : 10px;
+        border          : none;
+        box-shadow      : rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) 0px 16px 32px -4px;
     }
     .widget-content-area { border-radius: 6px; }
         .daterangepicker.dropdown-menu {
             z-index: 1059;
+    }
+    #footer {
+      position  : absolute;
+      bottom    : 0;
+      width     : 100%;
     }
 </style>
 <!--  BEGIN CUSTOM STYLE FILE  -->
@@ -38,3 +43,10 @@
 
 <link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/font-awesome.css">
 <link rel="stylesheet" href="<?=base_url()?>assets/plugins/font-icons/fontawesome/css/font-awesome.min.css">
+
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/table/datatable/datatables.css">
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/plugins/table/datatable/dt-global_style.css">
+<!-- END PAGE LEVEL STYLES -->
+<link rel="stylesheet" href="<?=base_url()?>assets/plugins/editors/quill/quill.snow.css">
+<link rel="stylesheet" href="<?=base_url()?>assets/plugins/editors/markdown/simplemde.min.css">

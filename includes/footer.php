@@ -1,5 +1,5 @@
 
-<div class="footer-wrapper">
+<div class="footer-wrapper" id="footer">
     <div class="footer-section f-section-1">
         <p class="">Copyright © <?=date('Y')?> <a target="_blank" href="https://designreset.com">DesignReset</a>, Todos los derechos reservados.</p>
     </div>
@@ -42,6 +42,33 @@ function cargando_swal (cargando=true){
         swal.close();
     }
 }
+function mensajeRespuesta(respuesta){
+    if(respuesta == 200){
+        swal({
+            title       : 'Datos almacenados con exito!',
+            animation   : false,
+            customClass : 'animated tada',
+            padding     : '2em',
+            text        : 'Cerraré en 2 segundos.',
+            timer       : 2000,
+            onOpen      : function () {
+                swal.showLoading()
+            }
+        });
+    }else{
+        swal({
+            title       : 'Algo salio mal contacte al proveedor!',
+            animation   : false,
+            customClass : 'animated tada',
+            padding     : '2em',
+            text        : 'Cerraré en 3 segundos.',
+            timer       : 3000,
+            onOpen      : function () {
+                swal.showLoading()
+            }
+        });
+    }
+}
 </script>
 <script src="<?=base_url()?>assets/assets/js/custom.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
@@ -69,4 +96,7 @@ function cargando_swal (cargando=true){
 <!-- END PAGE LEVEL SCRIPTS -->
 
 <!--  BEGIN CUSTOM SCRIPTS FILE  -->
-<!--  END CUSTOM SCRIPTS FILE  -->
+<script src="<?=base_url()?>assets/plugins/table/datatable/datatables.js"></script>
+
+<script src="<?=base_url()?>assets/plugins/editors/quill/quill.js"></script>
+<script src="<?=base_url()?>assets/plugins/editors/markdown/simplemde.min.js"></script>

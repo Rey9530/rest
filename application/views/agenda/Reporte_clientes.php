@@ -18,7 +18,7 @@
                             <nav class="breadcrumb-one" aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Agenda</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><span>Calendario</span></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span>Rerporte Clientes</span></li>
                                 </ol>
                             </nav>
                         </div>
@@ -28,50 +28,50 @@
         </div>
         <!--  END NAVBAR  -->
 
-        <!--  BEGIN MAIN CONTAINER  -->
         <div class="main-container" id="container">
 
             <div class="overlay"></div>
             <div class="search-overlay"></div>
-
+            <!--  BEGIN MAIN CONTAINER  -->
             <?=include('includes/menu/menu.php')?>
-            
+
             <!--  BEGIN CONTENT AREA  -->
             <div id="content" class="main-content">
                 <div class="layout-px-spacing">
-                    <div class="row layout-top-spacing" id="cancel-row">
-                        <div class="col-xl-12 col-lg-12 col-md-12">
-                            <div class="statbox widget box box-shadow">
-                                <div class="widget-content widget-content-area">
-                                    <div class="calendar-upper-section">
-                                        <div class="row">
-                                            <div class="col-md-3 col-12">
-                                                <!--aqui pondremos el selector de las sucursales-->
-                                                <label>Sucursales:</label>
-                                                <select id="sucursal" class="form-control form-control-lg">
-                                                    <?php echo $sucursal; ?>
-                                                </select>
-                                            </div>                                                
-                                            <div class="col-md-9 col-12">
-                                            </div>
-                                        </div>
+
+                    <div class="row layout-top-spacing">
+
+                        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing mt-3">
+                            <div class="widget-content widget-content-area br-6">
+                                <div class="row mt-5 ml-5">
+                                    <div class="col-md-3">
+                                        <label for="incio">Incio</label>
+                                        <input type="text" id="inicio" class="form-control calendario" value="<?=date('d-m-Y')?>">
                                     </div>
-                                    <div id="calendar"></div>
+                                    <div class="col-md-3">
+                                        <label for="fin">Fin</label>
+                                        <input type="text" id="fin" class="form-control calendario" value="<?=date('d-m-Y')?>">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="fin">Sucursal</label>
+                                        <select id="id_sucursal" class="form-control"></select>
+                                    </div>
+                                    <div class="col-md-3 pt-4">
+                                        <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Imprimir</button>
+                                        <button type="button" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Imprimir</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- The Modal -->
-                        <div id="modal-celandario" class="modal animated zoomInUp custo-zoomInUp"> </div>
-                        <div id="modal-whatsapp" class="modal animated rotateInDownLeft custo-rotateInDownLeft"> </div>
                     </div>
+
                 </div>
                 <?php include('includes/footer.php'); ?>
+                <div id="moda-mensaje" class="modal animated fadeInRight custo-fadeInRight" role="dialog"></div>
             </div>
+            <!--  END CONTENT AREA  -->
         </div>
-        <!--  END CONTENT AREA  -->
-
-        <script src="<?=base_url()?>assets/js/agenda/Agenda_eventos.js?<?=time()?>"></script>
-        <script src="<?=base_url()?>assets/js/agenda/fullcalendar.js?<?=time()?>"></script>
     </body>
 </html>
+<script src="<?=base_url()?>assets/js/agenda/Reportes_clientes.js"></script>

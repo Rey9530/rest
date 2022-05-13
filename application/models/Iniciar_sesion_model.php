@@ -24,10 +24,29 @@ class Iniciar_sesion_model extends CI_model{
 
         if(count($data)>0){ 
             $sesion = $this->session->set_userdata('usuario',$data[0]);
+            $this->avisoDeAcceso(200);
             return array('estado'=>200,'msg'=>'Acceso Concedido'); 
         }else{
+            $this->avisoDeAcceso(400,$usuario);
             return array('estado'=>400,'msg'=>'Error de session, acceso denegado');
         } 
+    }
+
+    public function avisoDeAcceso($estado,$usuario = ''){
+        if($estado == 200){
+            $usuario = $this->obtener_session();
+            $accion_realizada                   = 'A ingresado al sistema';
+            $campos['id_usuario']               = $usuario['id_usuario'];
+            $campos['id_sucursal']              = $usuario['id_sucursal'];
+            $campos['accion_realizada']         = $accion_realizada;
+            $this->db->insert('bitacora',$campos);
+        }else{
+            $accion_realizada                   = '¡Aviso! Se ha realizado un intento de ingreso al sisterma con el usuario: '.mb_strtoupper($usuario);
+            $campos['id_usuario']               = 1;
+            $campos['id_sucursal']              = 1;
+            $campos['accion_realizada']         = $accion_realizada;
+            $this->db->insert('bitacora',$campos);
+        }
     }
 }
 

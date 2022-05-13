@@ -28,12 +28,17 @@
                 </ul>
                 <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
                     <li>
-                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reporte de clientes</a>
+                        <a href="<?php echo base_url(); ?>agenda/Clientes"> Clientes</a>
                     </li>  
                 </ul>
                 <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
                     <li>
-                        <a href="<?php echo base_url(); ?>agenda/Agenda_reserva"> Reporte de reservas de eventos</a>
+                        <a href="<?php echo base_url(); ?>agenda/Reporte_clientes"> Reporte de clientes</a>
+                    </li>  
+                </ul>
+                <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
+                    <li>
+                        <a href="<?php echo base_url(); ?>agenda/Reporte_reservas"> Reporte de reservas de eventos</a>
                     </li>  
                 </ul>
             </li>
@@ -81,6 +86,11 @@
                 <ul class="collapse submenu list-unstyled" id="app" data-parent="#accordionExample">
                     <li>
                         <a href="<?=base_url()?>administracion/productos"> Productos</a>
+                    </li>  
+                </ul>
+                <ul class="collapse submenu list-unstyled" id="app" data-parent="#accordionExample">
+                    <li>
+                        <a href="<?=base_url()?>administracion/MensajeWhatsapp"> Mensajes de WhatsApp</a>
                     </li>  
                 </ul>
             </li>
