@@ -69,8 +69,28 @@ class Menu_model extends CI_model{
                 'categoria_descripcion'=>$item->categoria_descripcion,
                 'url'=>$url,
             );
-        }
+        } 
+        return $json;
+    } 
 
+    public function cargar_productos($id_categoria=0){ 
+        
+        $json['estado'] = 200;
+  
+        $data = $this->db->query('SELECT * FROM productos WHERE estado=1 AND estado_disponibilidad=1 AND id_categoria='.intval($id_categoria) ); 
+        foreach ($data->result_array() AS $item ) {
+            $item = (object) $item; 
+
+            $url = base_url().'archivos/productos/'.$item->img;
+            $en_venta = ($item->estado_disponibilidad==1) ? 'checked' : '';
+            $json['detalle'][] = array(
+                'nombre'=>$item->nombre,
+                'tk_producto'=>$item->id_producto,
+                'descripcion'=>$item->descripcion,
+                'precio'=>$item->precio,
+                'url'=>$url,
+            );
+        } 
         return $json;
     } 
 }

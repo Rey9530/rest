@@ -20,7 +20,6 @@ class Iniciar_sesion extends CI_Controller {
 	{
 		$data = $this->input->post(); 
 		$resp = $this->Iniciar_sesion_model->logueo($data);
-
 		echo json_encode($resp);
 	}
 }

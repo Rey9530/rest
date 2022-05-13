@@ -1,6 +1,6 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.24-MariaDB)
-# Date: 2022-05-12 20:26:20
-# Generator: MySQL-Front 6.0  (Build 2.20)
+# Date: 2022-05-13 01:22:44
+# Generator: MySQL-Front 6.1  (Build 1.26)
 
 
 #
@@ -23,33 +23,13 @@ CREATE TABLE `agenda_eventos` (
   `estado` int(11) DEFAULT 1 COMMENT '0 activo, 1 eliminado, 2 llegada, despachado',
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_agenda_reserva`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 #
 # Data for table "agenda_eventos"
 #
 
-INSERT INTO `agenda_eventos` VALUES (1,1,2,6,4,'2022-05-06 19:01:00','2022-05-06 19:01:00','2022-05-06 19:01:00',3,'#1ABC9C','Prueba',1,'2022-05-05 21:53:33'),(2,1,3,1,2,'2022-05-07 00:00:00','2022-05-07 00:00:00','2022-05-07 00:00:00',2,'#E2A03F','Nuevo empleo',1,'2022-05-06 20:46:23'),(3,1,3,5,5,'2022-05-12 00:00:00','2022-05-12 00:00:00','2022-05-12 00:00:00',5,'#805dca','Prueba',1,'2022-05-06 20:48:52'),(4,1,2,7,2,'2022-05-10 20:00:00','2022-05-10 20:00:00','2022-05-10 20:00:00',1,'#4361EE','El día de las madres',1,'2022-05-09 23:31:33');
-
-#
-# Structure for table "bitacora"
-#
-
-DROP TABLE IF EXISTS `bitacora`;
-CREATE TABLE `bitacora` (
-  `id_bitacora` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT 0,
-  `id_sucursal` int(11) DEFAULT 0,
-  `accion_realizada` text DEFAULT NULL,
-  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id_bitacora`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
-
-#
-# Data for table "bitacora"
-#
-
-INSERT INTO `bitacora` VALUES (1,1,1,'Actualizo el nuevo mensaje ID 2, con titulo de: Mensaje de cancelación.','2022-05-09 23:18:15'),(2,1,1,'Cambio el mensaje ID 2, a estado: inhabilito','2022-05-09 23:22:00'),(3,1,1,'Registro un nuevo cliente ID7, con nombre: Juana Maria Vasquez lopez','2022-05-09 23:31:33'),(4,1,1,'Registro una nueva reverva ID4, para el cliente ID 7','2022-05-09 23:31:33'),(5,1,1,'Se han realizado intentos de ingresos con el usuario: ADMIN','2022-05-10 09:39:28'),(6,1,1,'A ingresado al sistema','2022-05-10 09:41:26'),(7,1,1,'¡Aviso! Se ha realizado un intento de ingreso al sisterma con el usuario: ADMIN','2022-05-10 09:41:46'),(8,1,1,'A ingresado al sistema','2022-05-10 09:46:30'),(9,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:30'),(10,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:39'),(11,1,1,'Elimino el registro del cliente ID: 6','2022-05-10 16:04:17'),(12,1,1,'A ingresado al sistema','2022-05-11 20:45:34');
+INSERT INTO `agenda_eventos` VALUES (1,1,0,1,0,'2022-05-02 22:31:00','2022-05-02 22:31:00','2022-05-02 22:31:00',1,'#4361EE','',1,'2022-05-02 22:32:05'),(2,1,0,1,0,'2022-05-02 22:40:00','2022-05-02 22:40:00','2022-05-02 22:40:00',1,'#4361EE','',1,'2022-05-02 22:40:13'),(3,1,0,1,0,'2022-05-02 22:42:00','2022-05-02 22:42:00','2022-05-02 22:42:00',1,'#4361EE','',1,'2022-05-02 22:42:18'),(4,1,0,1,0,'2022-05-02 22:43:00','2022-05-02 22:43:00','2022-05-02 22:43:00',1,'#4361EE','',1,'2022-05-02 22:43:17'),(5,1,0,1,0,'2022-05-02 22:43:00','2022-05-02 22:43:00','2022-05-02 22:43:00',1,'#4361EE','',1,'2022-05-02 22:43:34'),(6,1,1,2,12,'2022-05-03 00:00:00','2022-05-03 00:00:00','2022-05-03 00:00:00',2,'#E2A03F','sdasdsd',1,'2022-05-06 00:14:28');
 
 #
 # Structure for table "categorias"
@@ -87,35 +67,13 @@ CREATE TABLE `clientes` (
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
   PRIMARY KEY (`id_cliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 #
 # Data for table "clientes"
 #
 
-INSERT INTO `clientes` VALUES (1,1,'Diego Arturo Lopez Vasquez','(503) 7358-2967','','','2022-05-05 21:53:33',1),(5,1,'Veronica Fernanda Hernadez Ramoz','(503) 7485-1564','','','2022-05-06 20:42:48',1),(6,1,'Paola Maria Lope Vasquez','(503) 6104-4860','','','2022-05-06 23:30:19',1),(7,1,'Juana Maria Vasquez lopez','(503) 6515-1515','','','2022-05-09 23:31:33',1);
-
-#
-# Structure for table "mensaje_whatsapp"
-#
-
-DROP TABLE IF EXISTS `mensaje_whatsapp`;
-CREATE TABLE `mensaje_whatsapp` (
-  `id_mensaje` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo_mensaje` varchar(255) DEFAULT NULL,
-  `contenido_mensaje` text DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT 0,
-  `id_sucursal` int(11) DEFAULT 0,
-  `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
-  `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
-  PRIMARY KEY (`id_mensaje`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
-
-#
-# Data for table "mensaje_whatsapp"
-#
-
-INSERT INTO `mensaje_whatsapp` VALUES (1,'Recordatorio de reserva','Muy buenos días estimado cliente, le recordamos que tiene una reserva este día.\r\n\r\nEsperamos su confirmación. 🙌❤',1,1,'2022-05-06 22:41:09',1),(2,'Mensaje de cancelación.','Estimado cliente su reversa fue calenda por no llevar a tiempo.\r\n\r\nTenga un feliz día 🙌✔🐱‍🐉.',1,1,'2022-05-08 13:41:11',0);
+INSERT INTO `clientes` VALUES (1,1,'Demostracion','(503) 7358-2967',NULL,'cliente@gmail.com','2022-05-01 23:34:11',1),(2,1,'Paola Maria Lopez Vasquez','(503) 6526-5662','(503) 5656-2665','cliente@gmail.com','2022-05-02 19:30:23',1);
 
 #
 # Structure for table "menu_disponibilidad"
@@ -180,7 +138,7 @@ CREATE TABLE `mesas_cuentas` (
 #
 
 /*!40000 ALTER TABLE `mesas_cuentas` DISABLE KEYS */;
-INSERT INTO `mesas_cuentas` VALUES (1,'Alexander Rosales','1',9,'','1');
+INSERT INTO `mesas_cuentas` VALUES (1,'Alexander Rosales','1',9,'','2'),(2,'N/A','1',8,'Observación','1');
 /*!40000 ALTER TABLE `mesas_cuentas` ENABLE KEYS */;
 
 #
@@ -201,6 +159,9 @@ CREATE TABLE `ordenes_restaurante` (
 # Data for table "ordenes_restaurante"
 #
 
+/*!40000 ALTER TABLE `ordenes_restaurante` DISABLE KEYS */;
+INSERT INTO `ordenes_restaurante` VALUES (1,1,'2022-05-12 19:36:53','2022-05-12 19:36:53','1'),(2,1,'2022-05-12 19:38:46','2022-05-12 19:38:46','1'),(3,1,'2022-05-12 19:40:51','2022-05-12 19:40:51','1'),(4,2,'2022-05-13 01:19:06','2022-05-13 01:19:06','1');
+/*!40000 ALTER TABLE `ordenes_restaurante` ENABLE KEYS */;
 
 #
 # Structure for table "ordenes_restaurante_detalle"
@@ -216,7 +177,9 @@ CREATE TABLE `ordenes_restaurante_detalle` (
   `monto_complementos` decimal(10,2) DEFAULT 0.00,
   `sub_total` decimal(10,2) DEFAULT 0.00 COMMENT 'esot es el resultado de cantiodad por precio + monto_commplementos',
   `ids_complementos` varchar(255) DEFAULT '0',
+  `comentario` text DEFAULT NULL,
   `estado` varchar(1) DEFAULT '1' COMMENT '1= activo, 0=Eliminado',
+  `fecha_creacion` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id_detalle`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -224,6 +187,9 @@ CREATE TABLE `ordenes_restaurante_detalle` (
 # Data for table "ordenes_restaurante_detalle"
 #
 
+/*!40000 ALTER TABLE `ordenes_restaurante_detalle` DISABLE KEYS */;
+INSERT INTO `ordenes_restaurante_detalle` VALUES (1,1,1,'1',45.00,0.00,45.00,'9,11,13','','1','2022-05-12 19:36:53'),(2,1,2,'2',61.50,5.50,123.00,'18,27','sdfgsdfg','0','2022-05-12 21:15:16'),(3,2,7,'1',30.00,0.00,30.00,'','A 3/4','1','2022-05-12 19:38:46'),(4,2,4,'1',10.00,0.00,10.00,'','','0','2022-05-12 21:18:29'),(5,2,7,'2',30.00,0.00,60.00,'','','1','2022-05-12 19:38:46'),(6,3,5,'1',17.00,0.00,17.00,'','','1','2022-05-12 19:40:51'),(7,3,1,'1',47.50,2.50,50.00,'10,12,14','Rapido','1','2022-05-12 19:40:51'),(8,3,4,'1',10.00,0.00,10.00,'','Comentario','1','2022-05-12 19:40:51'),(9,4,2,'1',58.50,2.50,61.00,'16,24','demo','1','2022-05-13 01:19:06'),(10,4,6,'1',25.00,0.00,25.00,'','','0','2022-05-13 01:19:12'),(11,4,4,'1',10.00,0.00,10.00,'','','1','2022-05-13 01:19:06');
+/*!40000 ALTER TABLE `ordenes_restaurante_detalle` ENABLE KEYS */;
 
 #
 # Structure for table "productos"
@@ -247,7 +213,7 @@ CREATE TABLE `productos` (
 #
 
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Huevos ','','1651300596.jpg','1',45.00,1,'1'),(2,'Carne','2 Quesadillas con carne extra','1651300791.jpg','1',56.00,2,'1'),(3,'Cóctel de Camarones','Es un coptel de camarones','1651391365.jpg','1',9.00,5,'1'),(4,'Camarones Empanizados','Es un Camarones Empanizados','1651391401.jpg','1',10.00,5,'1'),(5,'Churrasco Teriyaki 6oz','Lomito de aguja acompañado\r\nde yuca frita','1651391459.jpg','1',17.00,2,'1'),(6,'Pamperito Mixto 6oz','Lomito de aguja acompañado\r\nde 6oz de camarones','1651391498.jfif','1',25.00,2,'1'),(7,'Entraña 8oz','Entraña 8oz','1651391555.jpg','1',30.00,3,'1'),(8,'Cerveza Corona','Cerveza Corona','1651391696.jpg','1',2.00,4,'1'),(9,'Pilsener','Serveza','1651391760.jpg','1',1.00,4,'1');
+INSERT INTO `productos` VALUES (1,'Huevos ','Desayuno tipico','1651300596.jpg','1',45.00,1,'1'),(2,'Carne','2 Quesadillas con carne extra','1651300791.jpg','1',56.00,2,'1'),(3,'Cóctel de Camarones','Es un coptel de camarones','1651391365.jpg','1',9.00,5,'1'),(4,'Camarones Empanizados','Es un Camarones Empanizados','1651391401.jpg','1',10.00,5,'1'),(5,'Churrasco Teriyaki 6oz','Lomito de aguja acompañado\r\nde yuca frita','1651391459.jpg','1',17.00,2,'1'),(6,'Pamperito Mixto 6oz','Lomito de aguja acompañado\r\nde 6oz de camarones','1651391498.jfif','1',25.00,2,'1'),(7,'Entraña 8oz','Entraña 8oz','1651391555.jpg','1',30.00,3,'1'),(8,'Cerveza Corona','Cerveza Corona','1651391696.jpg','1',2.00,4,'1'),(9,'Pilsener','Serveza','1651391760.jpg','1',1.00,4,'1');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 #
@@ -261,14 +227,14 @@ CREATE TABLE `productos_componentes` (
   `nombre` varchar(255) DEFAULT NULL,
   `estado` varchar(1) DEFAULT '1',
   PRIMARY KEY (`id_componenete`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "productos_componentes"
 #
 
 /*!40000 ALTER TABLE `productos_componentes` DISABLE KEYS */;
-INSERT INTO `productos_componentes` VALUES (1,1,'huevos','0'),(2,1,'Frijoles','1'),(3,1,'Bebida','0'),(4,1,'Entrada','1'),(5,2,'prueba 1','1'),(6,3,'Guarniciones','1');
+INSERT INTO `productos_componentes` VALUES (1,1,'huevos','0'),(2,1,'Frijoles','0'),(3,1,'Bebida','0'),(4,1,'Entrada','0'),(5,2,'prueba 1','0'),(6,3,'Guarniciones','1'),(7,1,'Tipo de huevos','1'),(8,1,'Frijoles','0'),(9,1,'Acompañamientos','1'),(10,1,'Bebida','1'),(11,2,'Tipo carne','1'),(12,2,'Corte','1');
 /*!40000 ALTER TABLE `productos_componentes` ENABLE KEYS */;
 
 #
@@ -283,14 +249,14 @@ CREATE TABLE `productos_componentes_detalle` (
   `precio` decimal(10,2) DEFAULT 0.00,
   `estado` varchar(1) DEFAULT '1',
   PRIMARY KEY (`id_componente_detalle`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "productos_componentes_detalle"
 #
 
 /*!40000 ALTER TABLE `productos_componentes_detalle` DISABLE KEYS */;
-INSERT INTO `productos_componentes_detalle` VALUES (1,'2','sdfdf',33.00,'1'),(2,'5','estrellados',1.25,'0'),(3,'5','fsdsdf',3.00,'0'),(4,'5','asdfa',4344.00,'0'),(5,'6','Guarnicion1',0.00,'1'),(6,'6','Guarnicion2',0.25,'1'),(7,'6','Guarnicion 3',0.50,'0'),(8,'6','Guarnicio3',0.50,'1');
+INSERT INTO `productos_componentes_detalle` VALUES (1,'2','sdfdf',33.00,'1'),(2,'5','estrellados',1.25,'0'),(3,'5','fsdsdf',3.00,'0'),(4,'5','asdfa',4344.00,'0'),(5,'6','Guarnicion1',0.00,'1'),(6,'6','Guarnicion2',0.25,'1'),(7,'6','Guarnicion 3',0.50,'0'),(8,'6','Guarnicio3',0.50,'1'),(9,'7','Estrellados',0.00,'1'),(10,'7','Revueltos',1.00,'1'),(11,'9','Frijoles  Fritos',0.00,'1'),(12,'9','Casamiento',1.00,'1'),(13,'10','Cafe',0.00,'1'),(14,'10','Chocolate',0.50,'1'),(15,'10','Jugo de naranja',0.75,'1'),(16,'11','Roja',1.00,'0'),(17,'11','Blanca',1.25,'0'),(18,'11','Cerdo',2.50,'0'),(19,'11','Peceto ',0.00,'1'),(20,'11','Nalga de adentro',1.00,'1'),(21,'11','Solomillo',1.25,'1'),(22,'12','Filete T-Bone',0.00,'1'),(23,'12','Lomo',1.00,'1'),(24,'12','Tri-Tip Steak',1.50,'1'),(25,'12','Rib Eye Steak',2.00,'1'),(26,'12','Bone-In Rib-Eye',2.50,'1'),(27,'12','Back Ribs',3.00,'1');
 /*!40000 ALTER TABLE `productos_componentes_detalle` ENABLE KEYS */;
 
 #
@@ -341,7 +307,6 @@ CREATE TABLE `usuarios` (
   `clave` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT '',
   `estado` varchar(1) DEFAULT '1' COMMENT '1=Activo, 1=Eliminado',
-  `id_sucursal` int(11) DEFAULT 1,
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -350,5 +315,5 @@ CREATE TABLE `usuarios` (
 #
 
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'admin','1234','Administrador','1',1);
+INSERT INTO `usuarios` VALUES (1,'admin','1234','Administrador','1');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;

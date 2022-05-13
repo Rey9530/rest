@@ -138,45 +138,79 @@ function detalle_cuenta($tk_cuenta){
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-justify"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
                                 Detalle
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="border-contact-tab" data-toggle="tab" href="#border-contact" role="tab" aria-controls="border-contact" aria-selected="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> 
-                                Contact
-                            </a>
-                        </li>
+                        </li> 
                     </ul>
                     <div class="tab-content mb-4" id="border-tabsContent">
                         <div class="tab-pane fade show active" id="cargar_ordenes_cuenta" role="tabpanel" aria-labelledby="cargar_ordenes_cuenta_tab">
+                            <!-------------------------------------------============================================================--->
                              
+                            <!-------------------------------------------============================================================--->
                         </div>
                         <div class="tab-pane fade" id="border-profile" role="tabpanel" aria-labelledby="border-profile-tab">
-                            <div class="media">
-                                <img class="meta-usr-img mr-3" src="assets/img/90x90.jpg" alt="Generic placeholder image">
-                                <div class="media-body">
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            <div class="media"> 
+                                <div class="media-body row">
+                                    <div class="col-12">
+
+                                        <h3>Proximamente</h3>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="border-contact" role="tabpanel" aria-labelledby="border-contact-tab">
-                            <p class="dropcap  dc-outline-primary">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                        </div>
+                        </div> 
                     </div> 
                 </div>
                 <div class="modal-footer">
-                    <A class="btn btn-primary" href="<?=base_url()?>restaurante/mesas/nueva_orden" target="_blank">  Nueva Orden</A> 
+                    <A class="btn btn-primary" href="<?=base_url()?>restaurante/mesas/nueva_orden/<?=$tk_cuenta?>"  >  Nueva Orden</A> 
+                    <button class="btn btn-danger" onclick="finalizar_cuenta(<?=$tk_cuenta?>)">Firnalizar Cuenta</button>
                     <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancelar</button> 
                 </div>
             </div>
         </div> 
         <script>
+            
+            function finalizar_cuenta(tk_cuenta){ 
+                swal({
+                    title: '¿Estas seguro?',
+                    text: "Esta por finalizar la orden!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Eliminar', 
+                }).then(function(result) {
+                    if (result.value) {  
+                        cargando_swal();
+                        $.ajax({
+                            type        : 'POST',
+                            url         : '<?=base_url()?>restaurante/mesas/finalizar_cuenta',
+                            data		: {tk_cuenta},
+                            dataType    : 'json',
+                            success: function(data){
+                                cargando_swal(false);
+                                if(data.estado==200){  
+                                    if(window.obtener_mesas){
+                                        obtener_mesas();
+                                    }
+                                    swal({
+                                        title: 'Excelente!',
+                                        text: data.msj,
+                                        type: 'success',
+                                        padding: '2em'
+                                    }).then(function(data) {
+                                        // location.href = '<?=base_url()?>restaurante/mesas'; 
+                                    })
+                                }else{ 
+                                    swal({
+                                        title: 'Ooops!',
+                                        text: data.msj,
+                                        type: 'error',
+                                        padding: '2em'
+                                    }).then(function(data) {
+                                        console.log(data);
+                                    })
+                                }
+                            }
+                        });
+                    }
+                }); 
+            }
             function cargar_ordenes_cuenta(tk){ 
                 $.ajax({
                     type        : 'POST',
@@ -203,8 +237,250 @@ function detalle_cuenta($tk_cuenta){
 
 function cargar_ordenes_cuenta($tk_cuenta){
     $CI =& get_instance();
+    $i =0;
+
+    ?>
+    
+    <div id="iconsAccordion" class="accordion-icons">
+    <?php
+    $data = $CI->db->where('id_cuenta='.intval($tk_cuenta))->get('ordenes_restaurante')->result_array();
+    foreach ($data AS $item) { $i++;
+        $item = (object) $item; 
+        ?>
+        <div class="card">
+            <div class="card-header" id="headingOne3_<?=$item->id_orden?>">
+                <section class="mb-0 mt-0">
+                    <div role="menu" class="collapsed" data-toggle="collapse" data-target="#iconAccordionOne_<?=$item->id_orden?>" aria-expanded="false" aria-controls="iconAccordionOne_<?=$item->id_orden?>">
+                        <div class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
+                        Orden #<?=$i?>
+                        <div class="icons">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="iconAccordionOne_<?=$item->id_orden?>" class="collapse" aria-labelledby="headingOne3_<?=$item->id_orden?>" data-parent="#iconsAccordion">
+                <div class="card-body table-responsive" style="word-wrap: break-word;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Plato</th>
+                                <th>Cantidad</th>
+                                <th>Extras</th>
+                                <th>Precio</th>
+                                <th>Sub Total</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    <?php
+                        $e=0;
+                        $data = $CI->db->query('SELECT *,ordenes_restaurante_detalle.estado AS estado_detalle FROM ordenes_restaurante_detalle 
+                        INNER JOIN productos ON productos.id_producto=ordenes_restaurante_detalle.id_producto
+                        WHERE id_orden='.intval($item->id_orden))->result_array();
+                        foreach ($data AS $detalle) {
+                            $e ++;
+                            $detalle = (object) $detalle; 
+                            $html_componente='';
+                            if($detalle->ids_complementos!=''){ 
+                                $porciones = explode(",", $detalle->ids_complementos);
+                                $ids = implode(",", $porciones); 
+                                
+                                $data = $CI->db->query('SELECT * FROM productos_componentes_detalle  
+                                WHERE id_componente_detalle IN ('.$ids.')')->result_array();
+                                foreach ($data AS $componenet) {
+                                    $html_componente .= '-'.$componenet['descripcion'].'<br>';
+                                }
+                            }
+                            ?>
+                                <tr>
+                                    <td><?=$e?></td>
+                                    <td><?=$detalle->nombre?></td>
+                                    <td><?=$detalle->cantidad?></td>
+                                    <td><?=$html_componente?></td>
+                                    <td><?=$detalle->precio?></td>
+                                    <td><?=$detalle->sub_total?></td>
+                                    <td>
+                                        <?php if($detalle->estado_detalle==1){ ?>
+                                            <button class="btn btn-danger" onclick="eliminar_detalle(<?=$detalle->id_detalle?>)"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>    
+                                            </button> 
+                                        <?php }else{ ?>
+                                            <label class="badge bg-warning">Eliminado</label>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php
+                        }
+                
+                    ?></tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            function eliminar_detalle(detalle){ 
+                swal({
+                    title: '¿Estas seguro?',
+                    text: "Esta por eliminar el item seleecionado!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Eliminar', 
+                }).then(function(result) {
+                    if (result.value) {  
+                        $.ajax({
+                            type        : 'POST',
+                            url         : '<?=base_url()?>restaurante/mesas/eliminar_detalle',
+                            data		: {detalle},
+                            dataType    : 'json',
+                            success: function(data){
+                                if(data.estado==200){  
+                                    agregar_a_mesa(0,<?=$tk_cuenta?>);
+                                    swal({
+                                        title: 'Excelente!',
+                                        text: data.msj,
+                                        type: 'success',
+                                        padding: '2em'
+                                    }).then(function(data) {
+                                        
+                                    })
+                                }else{ 
+                                    swal({
+                                        title: 'Ooops!',
+                                        text: data.msj,
+                                        type: 'error',
+                                        padding: '2em'
+                                    }).then(function(data) {
+                                        console.log(data);
+                                    })
+                                }
+                            }
+                        });
+                    }
+                }); 
+            }
+        </script>
+ 
+
+    <?php  }
+    ?> </div><?php
+}
 
 
-    ?> 
+function add_producto($tk_producto){
+    $CI =& get_instance(); 
+
+    $CI->db->where("id_producto",$tk_producto);
+    $data = $CI->db->get("productos")->result_array(); 
+    if(count($data)==0){
+        echo "<h3>Ooops a ocurrido algo</h3>";
+        return;
+    }
+    $data = $data[0];
+    ?>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><?=$data['nombre']?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-12">
+                        <p><?= nl2br($data['descripcion'])?></p>
+                    </div>
+                    <div class="col-12">
+                        <form action="return false;" id="form_add_producto">
+                            <input type="hidden" name="tk_producto" id="tk_producto" value="<?=$tk_producto?>">
+                            <?php
+                                $i=0;
+                                $query_components = $CI->db->where('id_producto',$tk_producto)->where('estado=1')->get('productos_componentes')->result_array(); 
+                                foreach ($query_components AS $item) { $i ++;
+                                    ?>
+                                    <div class="form-group">
+                                        <p><?=$item['nombre']?></p>
+                                        <select name="componente_<?=$i?>" id="componente_<?=$i?>" class="form-control">
+                                            <?php
+                                                $query_components_d = $CI->db->where('id_componente',$item['id_componenete'])->get('productos_componentes_detalle')->result_array(); 
+                                                foreach ($query_components_d AS $item_d) {
+                                                    echo "<option value='".$item_d['id_componente_detalle']."'>".$item_d['descripcion']." (+".number_format($item_d['precio'],2).")</option>";
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <?php 
+                                }
+                            ?>
+                            <input type="hidden" name="contador" id="contador" value="<?=$i?>">
+                            <div class="form-group">
+                                <p>Cantidad</p>
+                                <input type="text" id="cantidad" name="cantidad" class="form-control" value="1">
+                            </div>
+                            <div class="form-group">
+                                <p>Comentario</p>
+                                <textarea type="text" id="comentario" name="comentario" class="form-control" ></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn"   data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="agregar_al_detalle()" id="procesar_btn">Agregar</button>
+                </div>
+            </div>
+        </div> 
+        <script> 
+            function agregar_al_detalle(){ 
+                if(!$("#cantidad").val()>0){
+                    swal({
+                        title: 'Ooops',
+                        text: "La cantidad minima debe ser 1!",
+                        type: 'error',
+                        padding: '2em'
+                    });
+                    return false;
+                }
+                $.ajax({ 
+                    type        : 'POST',
+                    url         : '<?=base_url()?>restaurante/mesas/agregar_al_detalle',
+                    data		: $("#form_add_producto").serialize(),
+                    dataType    : 'json',
+                    beforeSend:function(data){
+                        cargando_swal();
+                    },
+                    success: function(data){
+                        if(data.estado==200){
+                            cargando_swal(false);
+                            $('#modal').modal('hide');
+                            obtener_detalle_orden();
+                            const toast = swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                padding: '2em'
+                            }); 
+                            toast({
+                                type: 'success',
+                                title: data.msj,
+                                padding: '2em',
+                            });
+                        }else{
+                            swal({
+                                title: 'Ooops',
+                                text: data.msj,
+                                type: 'error',
+                                padding: '2em'
+                            });
+                        }
+                    }
+                });
+            }
+        </script> 
     <?php
 }

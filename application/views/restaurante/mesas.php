@@ -7,13 +7,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="<?=base_url()?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?=base_url()?>assets/assets/css/plugins.css" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
-
+    <!-- END GLOBAL MANDATORY STYLES --> 
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/assets/css/forms/theme-checkbox-radio.css">
     <link href="<?=base_url()?>assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link href="<?=base_url()?>assets/assets/css/apps/contacts.css" rel="stylesheet" type="text/css" />
     <link href="<?=base_url()?>assets/assets/css/components/cards/card.css" rel="stylesheet" type="text/css" />
+    <link href="<?=base_url()?>assets/assets/css/components/tabs-accordian/custom-accordions.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL STYLES -->    
 </head>
 <body>
