@@ -22,53 +22,90 @@
 <script src="<?=base_url()?>assets/assets/js/app.js"></script>
 
 <script>
-$(document).ready(function() {
-    App.init();
-});
-function cargando_swal (cargando=true){
-    if(cargando){
-        swal({
-            title: 'Procesando!',
-            text: 'Por favor espere',  
-            allowOutsideClick: false,
-            padding: '2em',
-            onOpen: function () {
-                swal.showLoading()
-            }
-        }).then(function (result) {
-                
-        })
-    }else{
-        swal.close();
-    }
-}
-function mensajeRespuesta(respuesta){
-    if(respuesta == 200){
-        swal({
-            title       : 'Datos almacenados con exito!',
-            animation   : false,
-            customClass : 'animated tada',
-            padding     : '2em',
-            text        : 'Cerraré en 2 segundos.',
-            timer       : 2000,
-            onOpen      : function () {
-                swal.showLoading()
-            }
-        });
-    }else{
-        swal({
-            title       : 'Algo salio mal contacte al proveedor!',
-            animation   : false,
-            customClass : 'animated tada',
-            padding     : '2em',
-            text        : 'Cerraré en 3 segundos.',
-            timer       : 3000,
-            onOpen      : function () {
-                swal.showLoading()
+    function cerrarSesion(){
+        $.ajax({
+            url     : '<?=base_url()?>Iniciar_sesion/cerrarSesion',
+            type    : 'POST',
+            success : (respuesta)=>{
+                if(respuesta == 200){
+                    swal({
+                        title       : 'Has cerrado sesion, esperamos que vuelvas pronto!',
+                        animation   : false,
+                        customClass : 'animated tada',
+                        padding     : '2em',
+                        text        : 'Cerraré en 2 segundos.',
+                        timer       : 2000,
+                        onOpen      : function () {
+                            swal.showLoading()
+                        }
+                    });
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                }else{
+                    swal({
+                        title       : 'Algo salio mal contacte al proveedor!',
+                        animation   : false,
+                        customClass : 'animated tada',
+                        padding     : '2em',
+                        text        : 'Cerraré en 3 segundos.',
+                        timer       : 3000,
+                        onOpen      : function () {
+                            swal.showLoading()
+                        }
+                    });
+                }
             }
         });
     }
-}
+    $(document).ready(function() {
+        App.init();
+    });
+    function cargando_swal (cargando=true){
+        if(cargando){
+            swal({
+                title: 'Procesando!',
+                text: 'Por favor espere',  
+                allowOutsideClick: false,
+                padding: '2em',
+                onOpen: function () {
+                    swal.showLoading()
+                }
+            }).then(function (result) {
+
+            })
+        }else{
+            swal.close();
+        }
+    }
+    function mensajeRespuesta(respuesta){
+        if(respuesta == 200){
+            swal({
+                title       : 'Datos almacenados con exito!',
+                animation   : false,
+                customClass : 'animated tada',
+                padding     : '2em',
+                text        : 'Cerraré en 2 segundos.',
+                timer       : 2000,
+                onOpen      : function () {
+                    swal.showLoading()
+                }
+            });
+        }else{
+            swal({
+                title       : 'Algo salio mal contacte al proveedor!',
+                animation   : false,
+                customClass : 'animated tada',
+                padding     : '2em',
+                text        : 'Cerraré en 3 segundos.',
+                timer       : 3000,
+                onOpen      : function () {
+                    swal.showLoading()
+                }
+            });
+        }
+    }
 </script>
 <script src="<?=base_url()?>assets/assets/js/custom.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
