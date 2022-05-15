@@ -18,7 +18,7 @@
                             <nav class="breadcrumb-one" aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Agenda</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><span>Reporte Clientes</span></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span>Reporte Reverva</span></li>
                                 </ol>
                             </nav>
                         </div>
@@ -74,4 +74,4 @@
         </div>
     </body>
 </html>
-<script src="<?=base_url()?>assets/js/agenda/Reportes_clientes.js"></script>
+<script src="<?=base_url()?>assets/js/agenda/Reporte_reservas.js"></script>

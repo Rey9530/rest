@@ -10,6 +10,7 @@ class Iniciar_sesion_model extends CI_model{
     public function obtener_session(){
         return ($this->session->userdata('usuario')) ? $this->session->userdata('usuario') : null;
     }
+    
     public function logueo($data){
         extract($data);
         if(!isset($usuario) || !isset($clave)){
@@ -46,6 +47,18 @@ class Iniciar_sesion_model extends CI_model{
             $campos['id_sucursal']              = 1;
             $campos['accion_realizada']         = $accion_realizada;
             $this->db->insert('bitacora',$campos);
+        }
+    }
+
+    public function cerrarSesion(){
+        $usuario                      = $this->obtener_session();
+        $accion_realizada             = 'A cerrado sesion';
+        $campos['id_usuario']         = $usuario['id_usuario'];
+        $campos['id_sucursal']        = $usuario['id_sucursal'];
+        $campos['accion_realizada']   = $accion_realizada;
+        if($this->db->insert('bitacora',$campos)){
+            $this->session->sess_destroy();
+            return 200;
         }
     }
 }

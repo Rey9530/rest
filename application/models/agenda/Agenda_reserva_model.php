@@ -118,6 +118,7 @@ class Agenda_reserva_model extends CI_model{
             $cliente['dos_telefono_cliente']    = $datos['dos_telefono_cliente'];
             $cliente['correo_cliente']          = $datos['correo_cliente'];
             $cliente['id_usuario']              = $this->usuario['id_usuario'];
+            $cliente['id_sucursal']             = $this->usuario['id_sucursal'];
 
             if($this->db->insert('clientes',$cliente)){
                 $datos['id_cliente'] = $this->db->insert_id();
