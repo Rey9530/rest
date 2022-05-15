@@ -43,7 +43,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12">
                             <div class="statbox widget box box-shadow">
                                 <div class="widget-content widget-content-area">
-                                    <div class="calendar-upper-section">
+                                    <div class="calendar-upper-section pl-3 mt-4">
                                         <div class="row">
                                             <div class="col-md-3 col-12">
                                                 <!--aqui pondremos el selector de las sucursales-->

@@ -1,0 +1,34 @@
+/* ESTILOS PARA LOS DOCUMENTOS PDF */
+body{
+    font-size       : 0.8em;
+}
+
+h3{
+    font-size       : 1.4em;
+}
+table{
+    border-collapse : collapse;
+    width           : 97%;
+    margin-left     : 20px;
+}
+td {
+    border-top      : 1px solid white;
+    border-collapse : collapse;
+    font-weight     : bold;
+}
+th{
+    background              : #5DADE2;
+    border-top-left-radius  : 50px; 
+    border-top-right-radius : 50px;
+    color                   : white;
+    border                  : 1px solid white;
+}
+#contenedor{
+    margin-top      : 5%;
+    background      : #E5E7E9;
+    border-radius   : 25px;
+    position        : relative;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+}
