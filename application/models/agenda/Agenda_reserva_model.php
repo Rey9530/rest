@@ -83,15 +83,17 @@ class Agenda_reserva_model extends CI_model{
 
         $respuesta = array();
 
-        $this->db->where('estado',1);
-        $this->db->where('CONCAT_WS(" ",nombre_cliente,telefono_cliente,correo_cliente) LIKE "%'.$datos['buscar'].'%"');
-        $cliente = $this->db->get('clientes');
-        foreach($cliente->result_array() as $row){
+        if(!empty($datos['buscar'])){
+            $this->db->where('estado',1);
+            $this->db->where('CONCAT_WS(" ",nombre_cliente,telefono_cliente,correo_cliente) LIKE "%'.$datos['buscar'].'%"');
+            $cliente = $this->db->get('clientes');
+            foreach($cliente->result_array() as $row){
+    
+                $e['id']            =   $row['id_cliente'];
+                $e['text']          =   $row['nombre_cliente'];
+                array_push($respuesta,$e);
 
-            $e['id']            =   $row['id_cliente'];
-            $e['text']          =   $row['nombre_cliente'];
-            array_push($respuesta,$e);
-
+            }
         }
 
         echo json_encode($respuesta);

@@ -3,7 +3,7 @@ cargarSucursales();
 
 function cargarSucursales(){
     $.ajax({
-        url     : '../Agenda/Reporte_reservas/cargarSucursales',
+        url     : '../agenda/Reporte_reservas/cargarSucursales',
         type    : 'POST',
         success : (respuesta)=>{
             $('#id_sucursal').html(respuesta);
