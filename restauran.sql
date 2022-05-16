@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.24-MariaDB)
-# Date: 2022-05-13 02:12:59
+# Date: 2022-05-15 19:21:39
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -43,13 +43,13 @@ CREATE TABLE `bitacora` (
   `accion_realizada` text DEFAULT NULL,
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_bitacora`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 #
 # Data for table "bitacora"
 #
 
-INSERT INTO `bitacora` VALUES (1,1,1,'Actualizo el nuevo mensaje ID 2, con titulo de: Mensaje de cancelación.','2022-05-09 23:18:15'),(2,1,1,'Cambio el mensaje ID 2, a estado: inhabilito','2022-05-09 23:22:00'),(3,1,1,'Registro un nuevo cliente ID7, con nombre: Juana Maria Vasquez lopez','2022-05-09 23:31:33'),(4,1,1,'Registro una nueva reverva ID4, para el cliente ID 7','2022-05-09 23:31:33'),(5,1,1,'Se han realizado intentos de ingresos con el usuario: ADMIN','2022-05-10 09:39:28'),(6,1,1,'A ingresado al sistema','2022-05-10 09:41:26'),(7,1,1,'¡Aviso! Se ha realizado un intento de ingreso al sisterma con el usuario: ADMIN','2022-05-10 09:41:46'),(8,1,1,'A ingresado al sistema','2022-05-10 09:46:30'),(9,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:30'),(10,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:39'),(11,1,1,'Elimino el registro del cliente ID: 6','2022-05-10 16:04:17'),(12,1,1,'A ingresado al sistema','2022-05-11 20:45:34');
+INSERT INTO `bitacora` VALUES (1,1,1,'Actualizo el nuevo mensaje ID 2, con titulo de: Mensaje de cancelación.','2022-05-09 23:18:15'),(2,1,1,'Cambio el mensaje ID 2, a estado: inhabilito','2022-05-09 23:22:00'),(3,1,1,'Registro un nuevo cliente ID7, con nombre: Juana Maria Vasquez lopez','2022-05-09 23:31:33'),(4,1,1,'Registro una nueva reverva ID4, para el cliente ID 7','2022-05-09 23:31:33'),(5,1,1,'Se han realizado intentos de ingresos con el usuario: ADMIN','2022-05-10 09:39:28'),(6,1,1,'A ingresado al sistema','2022-05-10 09:41:26'),(7,1,1,'¡Aviso! Se ha realizado un intento de ingreso al sisterma con el usuario: ADMIN','2022-05-10 09:41:46'),(8,1,1,'A ingresado al sistema','2022-05-10 09:46:30'),(9,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:30'),(10,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:39'),(11,1,1,'Elimino el registro del cliente ID: 6','2022-05-10 16:04:17'),(12,1,1,'A ingresado al sistema','2022-05-11 20:45:34'),(13,1,1,'A ingresado al sistema','2022-05-15 19:19:14'),(14,1,1,'A cerrado sesion','2022-05-15 19:21:22');
 
 #
 # Structure for table "categorias"
@@ -86,6 +86,7 @@ CREATE TABLE `clientes` (
   `correo_cliente` varchar(255) DEFAULT NULL,
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   `estado` int(11) DEFAULT 1 COMMENT '0 eliminado, 1 activo',
+  `id_sucursal` int(11) DEFAULT 1,
   PRIMARY KEY (`id_cliente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
@@ -93,7 +94,7 @@ CREATE TABLE `clientes` (
 # Data for table "clientes"
 #
 
-INSERT INTO `clientes` VALUES (1,1,'Diego Arturo Lopez Vasquez','(503) 7358-2967','','','2022-05-05 21:53:33',1),(5,1,'Veronica Fernanda Hernadez Ramoz','(503) 7485-1564','','','2022-05-06 20:42:48',1),(6,1,'Paola Maria Lope Vasquez','(503) 6104-4860','','','2022-05-06 23:30:19',1),(7,1,'Juana Maria Vasquez lopez','(503) 6515-1515','','','2022-05-09 23:31:33',1);
+INSERT INTO `clientes` VALUES (1,1,'Diego Arturo Lopez Vasquez','(503) 7358-2967','','','2022-05-05 21:53:33',1,1),(5,1,'Veronica Fernanda Hernadez Ramoz','(503) 7485-1564','','','2022-05-06 20:42:48',1,1),(6,1,'Paola Maria Lope Vasquez','(503) 6104-4860','','','2022-05-06 23:30:19',1,1),(7,1,'Juana Maria Vasquez lopez','(503) 6515-1515','','','2022-05-09 23:31:33',1,1);
 
 #
 # Structure for table "mensaje_whatsapp"
@@ -173,7 +174,7 @@ CREATE TABLE `mesas_cuentas` (
   `observacion` text DEFAULT NULL,
   `estado` varchar(1) DEFAULT '1' COMMENT '1=cuenta activa, 0=cuenta cancelada, 2=cuenta cerrada',
   PRIMARY KEY (`id_cuenta`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "mesas_cuentas"
@@ -195,7 +196,7 @@ CREATE TABLE `ordenes_restaurante` (
   `fecha_actualizacion` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `estado` varchar(1) DEFAULT '1' COMMENT '1= activo , 0=eliminado',
   PRIMARY KEY (`id_orden`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "ordenes_restaurante"
@@ -223,7 +224,7 @@ CREATE TABLE `ordenes_restaurante_detalle` (
   `estado` varchar(1) DEFAULT '1' COMMENT '1= activo, 0=Eliminado',
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id_detalle`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "ordenes_restaurante_detalle"
