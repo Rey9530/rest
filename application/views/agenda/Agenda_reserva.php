@@ -70,6 +70,7 @@
             </div>
         </div>
         <!--  END CONTENT AREA  -->
+    <?php include('includes/scripts.php'); ?>
 
         <script src="<?=base_url()?>assets/js/agenda/Agenda_eventos.js?<?=time()?>"></script>
         <script src="<?=base_url()?>assets/js/agenda/fullcalendar.js?<?=time()?>"></script>

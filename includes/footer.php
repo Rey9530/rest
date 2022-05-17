@@ -61,6 +61,7 @@
     }
     $(document).ready(function() {
         App.init();
+        console.log()
     });
     function cargando_swal (cargando=true){
         if(cargando){

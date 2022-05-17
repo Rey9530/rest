@@ -16,9 +16,7 @@
     <link href="<?=base_url()?>assets/assets/css/components/tabs-accordian/custom-accordions.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL STYLES -->    
 </head>
-<body>
-     
-   
+<body> 
     <!--  BEGIN NAVBAR  -->
     <?php include('includes/nav_var.php')?>  
     <!--  END NAVBAR  -->
@@ -203,7 +201,6 @@
                 dataType    : 'html', 
                 data        : { tk_ },
                 beforeSend:function(data){
-                    $("#modal_xl").modal();
                     $("#modal_xl").html(`
                         <div class="modal-dialog modal-xl" role="document">
                             <div class="modal-content">
@@ -215,6 +212,7 @@
                             </div>
                         </div>
                     `);
+                    $("#modal_xl").modal();
                 },
                 success: function(data){ 
                     $("#modal_xl").html(data);

@@ -55,6 +55,7 @@
             </div>
             <!--  END CONTENT AREA  -->
         </div>
+        <?php include('includes/scripts.php'); ?>
+        <script src="<?=base_url()?>assets/js/agenda/Clientes.js"></script>
     </body>
 </html>
-<script src="<?=base_url()?>assets/js/agenda/Clientes.js"></script>
