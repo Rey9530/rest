@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.24-MariaDB)
-# Date: 2022-05-15 19:21:39
+# Date: 2022-05-16 20:17:28
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -43,13 +43,13 @@ CREATE TABLE `bitacora` (
   `accion_realizada` text DEFAULT NULL,
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id_bitacora`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 #
 # Data for table "bitacora"
 #
 
-INSERT INTO `bitacora` VALUES (1,1,1,'Actualizo el nuevo mensaje ID 2, con titulo de: Mensaje de cancelación.','2022-05-09 23:18:15'),(2,1,1,'Cambio el mensaje ID 2, a estado: inhabilito','2022-05-09 23:22:00'),(3,1,1,'Registro un nuevo cliente ID7, con nombre: Juana Maria Vasquez lopez','2022-05-09 23:31:33'),(4,1,1,'Registro una nueva reverva ID4, para el cliente ID 7','2022-05-09 23:31:33'),(5,1,1,'Se han realizado intentos de ingresos con el usuario: ADMIN','2022-05-10 09:39:28'),(6,1,1,'A ingresado al sistema','2022-05-10 09:41:26'),(7,1,1,'¡Aviso! Se ha realizado un intento de ingreso al sisterma con el usuario: ADMIN','2022-05-10 09:41:46'),(8,1,1,'A ingresado al sistema','2022-05-10 09:46:30'),(9,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:30'),(10,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:39'),(11,1,1,'Elimino el registro del cliente ID: 6','2022-05-10 16:04:17'),(12,1,1,'A ingresado al sistema','2022-05-11 20:45:34'),(13,1,1,'A ingresado al sistema','2022-05-15 19:19:14'),(14,1,1,'A cerrado sesion','2022-05-15 19:21:22');
+INSERT INTO `bitacora` VALUES (1,1,1,'Actualizo el nuevo mensaje ID 2, con titulo de: Mensaje de cancelación.','2022-05-09 23:18:15'),(2,1,1,'Cambio el mensaje ID 2, a estado: inhabilito','2022-05-09 23:22:00'),(3,1,1,'Registro un nuevo cliente ID7, con nombre: Juana Maria Vasquez lopez','2022-05-09 23:31:33'),(4,1,1,'Registro una nueva reverva ID4, para el cliente ID 7','2022-05-09 23:31:33'),(5,1,1,'Se han realizado intentos de ingresos con el usuario: ADMIN','2022-05-10 09:39:28'),(6,1,1,'A ingresado al sistema','2022-05-10 09:41:26'),(7,1,1,'¡Aviso! Se ha realizado un intento de ingreso al sisterma con el usuario: ADMIN','2022-05-10 09:41:46'),(8,1,1,'A ingresado al sistema','2022-05-10 09:46:30'),(9,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:30'),(10,1,1,'Edito la informacion del cliente ID: 1','2022-05-10 14:34:39'),(11,1,1,'Elimino el registro del cliente ID: 6','2022-05-10 16:04:17'),(12,1,1,'A ingresado al sistema','2022-05-11 20:45:34'),(13,1,1,'A ingresado al sistema','2022-05-15 19:19:14'),(14,1,1,'A cerrado sesion','2022-05-15 19:21:22'),(15,1,1,'A ingresado al sistema','2022-05-15 21:23:59');
 
 #
 # Structure for table "categorias"

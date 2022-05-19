@@ -131,32 +131,6 @@ function modalEventos($datos){
 
                                 <div class="row pt-5">
                                     <div class="col-md-4 col-sm-4 col-12">
-                                        <div class="form-group start-date">
-                                            <label for="start-date" class="">Inicio <span style="color: red;">*</span>:</label>
-                                            <div class="d-flex">
-                                                <input value="<?=((isset($evento['start']))?date('d-m-Y',strtotime($evento['start'])):$fecha_inicio)?>" id="inicio" name="inicio" placeholder="Fecha Inicio" class="form-control fecha required" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-12">
-                                        <div class="form-group">
-                                            <label class="">Fin <span style="color: red;">*</span>:</label>
-                                            <div class="d-flex">
-                                                <input value="<?=((isset($evento['start']))?date('d-m-Y',strtotime($evento['start'])):$fecha_final)?>" id="final" name="final" placeholder="Fecha Final" type="text" class="form-control fecha required">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-12">
-                                        <div class="form-group start-date">
-                                            <label for="start-date" class="">Hora <span style="color: red;">*</span>:</label>
-                                            <div class="d-flex">
-                                                <input value="<?=((isset($evento['start']))?date('H:i',strtotime($evento['start'])):$hora)?>" id="hora" name="hora" placeholder="Hora" class="form-control required" type="time">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row pt-2">
-                                    <div class="col-md-4 col-sm-4 col-12">
                                             <div class="form-group start-date">
                                                 <label for="start-date" class="">Sucursal <span style="color: red;">*</span>:</label>
                                                 <div class="d-flex">
@@ -184,6 +158,34 @@ function modalEventos($datos){
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row pt-2">
+                                    <div class="col-md-4 col-sm-4 col-12">
+                                        <div class="form-group start-date">
+                                            <label for="start-date" class="">Inicio <span style="color: red;">*</span>:</label>
+                                            <div class="d-flex">
+                                                <input value="<?=((isset($evento['start']))?date('d-m-Y',strtotime($evento['start'])):$fecha_inicio)?>" id="inicio" name="inicio" placeholder="Fecha Inicio" class="form-control fecha required" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-12">
+                                        <div class="form-group">
+                                            <label class="">Fin <span style="color: red;">*</span>:</label>
+                                            <div class="d-flex">
+                                                <input value="<?=((isset($evento['start']))?date('d-m-Y',strtotime($evento['start'])):$fecha_final)?>" id="final" name="final" placeholder="Fecha Final" type="text" class="form-control fecha required">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-12">
+                                        <div class="form-group start-date">
+                                            <label for="start-date" class="">Hora <span style="color: red;">*</span>:</label>
+                                            <div class="d-flex">
+                                                <input value="<?=((isset($evento['start']))?date('H:i',strtotime($evento['start'])):$hora)?>" id="hora" name="hora" placeholder="Hora" class="form-control required" type="time">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="row pt-2">
                                     <div class="col-md-12">
                                         <label class="">Descripcion del evento <span style="color: red;">*</span>:</label>

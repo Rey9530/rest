@@ -12,7 +12,7 @@ class Iniciar_sesion extends CI_Controller {
 	public function index()
 	{
 		if(!empty($this->Iniciar_sesion_model->obtener_session())){
-			redirect(base_url('administracion/inicio'));
+			redirect(base_url('agenda/Agenda_reserva'));
 		}
 		$this->load->view('iniciar_sesion');
 	}
