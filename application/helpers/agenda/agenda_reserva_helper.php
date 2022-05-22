@@ -14,7 +14,7 @@ function enviarWharsapp($datos){
                 <div class="modal-body">
                     <div class="col-md-12">
                         <label for="telefono_cliente" class="control-label">Numero WhatsApp <span style="color: red;">*</span>:</label>
-                        <input type="text" id="numero_celular" class="form-control celular" value="<?=$datos['telefono_cliente']?>">
+                        <input type="text" id="numero_celular" class="form-control celular" value="<?=((isset($datos['telefono_cliente']))?$datos['telefono_cliente']:'')?>">
                     </div>
                     <div class="col-md-12 pt-4">
                         <label for="mensaje" class="control-label">Seleccionar Mensaje <span style="color: red;">*</span>:</label>
@@ -38,18 +38,6 @@ function enviarWharsapp($datos){
             $(()=>{
                 cargarTitulosMensajes();
             });
-            
-            // var quill = new Quill('#mensaje', {
-            //     modules: {
-            //     toolbar: [
-            //         [{ header: [1, 2, false] }],
-            //         ['bold', 'italic', 'underline'],
-            //         ['image', 'code-block']
-            //     ]
-            //     },
-            //     placeholder: 'Compose an epic...',
-            //     theme: 'snow'  // or 'bubble'
-            // });
 
             $(".celular").inputmask({mask:"(503) 9999-9999"});
         </script>
@@ -76,9 +64,33 @@ function modalEventos($datos){
                             <form id="formularioEventos" autocomplete="off">
                                 <input hidden name="id_agenda_reserva" id="id_agenda_reserva" value="<?=$datos['id_agenda_reserva']?>">
                                 <input hidden id="id_oculto" name="id_oculto" value="0">
+                                <input hidden id="id_tipo_evento" name="id_tipo_evento" value="0">
+                                <input hidden id="color_fondo" name="color_fondo" >
 
-                                <div class="row mt-3">
+                                <div class="row pt-3">
+                                    <div class="col-md-8 col-sm-8 col-12">
+                                            <div class="form-group start-date">
+                                                <label for="start-date" class="">Sucursal <span style="color: red;">*</span>:</label>
+                                                <div class="d-flex">
+                                                    <select id="id_sucursal" name="id_sucursal" class="form-control required">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4 col-sm-4 col-12">
+                                        <div class="form-group start-date">
+                                            <label for="start-date" class="">Numero de personas <span style="color: red;">*</span>:</label>
+                                            <div class="d-flex">
+                                                <input value="<?php if(isset($evento['numero_personas'])) echo $evento['numero_personas']; ?>" id="numero_personas" name="numero_personas" placeholder="Ej.: 2" class="form-control required" type="number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
                                     <div class="col-md-12 col-sm-12 col-12">
+                                        <label for="buscar">Buscar Cliente <span style="color: red;">*</span>:</label>
                                         <div class="input-group">
                                             <input type="text" id="buscar" name="id_cliente" class="form-control" >
                                             <div class="input-group-append">
@@ -128,36 +140,6 @@ function modalEventos($datos){
                                     </div>
                                 </div>
                                 <!--campos del cliente-->
-
-                                <div class="row pt-5">
-                                    <div class="col-md-4 col-sm-4 col-12">
-                                            <div class="form-group start-date">
-                                                <label for="start-date" class="">Sucursal <span style="color: red;">*</span>:</label>
-                                                <div class="d-flex">
-                                                    <select id="id_sucursal" name="id_sucursal" class="form-control required">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-12">
-                                        <div class="form-group">
-                                            <label class="">Tipo evento <span style="color: red;">*</span>:</label>
-                                            <div class="d-flex">
-                                                <select id="id_tipo_evento" name="id_tipo_evento" class="form-control required" onchange="cargarColorFondo(this.value);">
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-4 col-sm-4 col-12">
-                                        <div class="form-group start-date">
-                                            <label for="start-date" class="">Numero de personas <span style="color: red;">*</span>:</label>
-                                            <div class="d-flex">
-                                                <input value="<?php if(isset($evento['numero_personas'])) echo $evento['numero_personas']; ?>" id="numero_personas" name="numero_personas" placeholder="Ej.: 2" class="form-control required" type="number">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="row pt-2">
                                     <div class="col-md-4 col-sm-4 col-12">
@@ -210,13 +192,26 @@ function modalEventos($datos){
             var id_tipo_evento  = "<?=((isset($evento['id_tipo_evento']))?$evento['id_tipo_evento']:'0')?>";
             var id_sucursal     = "<?=((isset($evento['id_sucursal']))?$evento['id_sucursal']:'0')?>";
             var nombre_cliente  = `<?=((isset($evento['nombre_cliente']))?$evento['nombre_cliente']:'Selecione cliente')?>`;
-            
+
             $(()=>{
+                generarNuevoColor();
                 cargarTipoEvento(id_tipo_evento);
                 cargarbuscador(nombre_cliente);
                 cargarSucursal(id_sucursal);
                 mostrarBotonWhatsapp(<?=$datos['id_agenda_reserva']?>);
             });
+
+            function generarNuevoColor(){
+            	var simbolos, color;
+            	simbolos    = "0123456789ABCDEF";
+            	color       = "#";
+
+            	for(var i = 0; i < 6; i++){
+            		color = color + simbolos[Math.floor(Math.random() * 16)];
+            	}
+                
+            	$('#color_fondo').val(color);
+            }
 
             function mostrarBotonWhatsapp(id=0){
                 if(id > 0){
@@ -269,8 +264,8 @@ function modalEventos($datos){
                 if($('#id_sucursal').val().length == 0){ $('#id_sucursal').css({'border':'1px solid red'}); return false; }
                 else { $('#id_sucursal').css({'border':'1px solid green'}); }
 
-                if($('#id_tipo_evento').val().length == 0){ $('#id_tipo_evento').css({'border':'1px solid red'}); return false; }
-                else { $('#id_tipo_evento').css({'border':'1px solid green'}); }
+                // if($('#id_tipo_evento').val().length == 0){ $('#id_tipo_evento').css({'border':'1px solid red'}); return false; }
+                // else { $('#id_tipo_evento').css({'border':'1px solid green'}); }
 
                 if(numero_personas.value.length == 0){ $('#numero_personas').css({'border':'1px solid red'}); return false;  }
                 else { $('#numero_personas').css({'border':'1px solid green'}); }

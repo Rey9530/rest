@@ -23,7 +23,7 @@ class Agenda_reserva_model extends CI_model{
         $this->db->where('agenda_eventos.estado != 0');
         $this->db->where('date(agenda_eventos.fecha_capturada) BETWEEN "'.$start.'" AND "'.$end.'" ');
         $this->db->join('clientes','clientes.id_cliente=agenda_eventos.id_cliente');
-        $this->db->join('tipo_evento','tipo_evento.id_tipo_evento=agenda_eventos.id_tipo_evento');
+        // $this->db->join('tipo_evento','tipo_evento.id_tipo_evento=agenda_eventos.id_tipo_evento','left');
         $evento = $this->db->get('agenda_eventos')->result_array();
         foreach($evento as  $row){
 
@@ -33,7 +33,7 @@ class Agenda_reserva_model extends CI_model{
             $e['end']                       = $row['end'];
             $e['backgroundColor']           = $row['color_fondo'];
             $e['description']               = 'Nota: '.$row['nota'];
-            $e['title']                     = $row['nombre_cliente'].' (Evento: '.$row['nombre_evento'].')';
+            $e['title']                     = $row['nombre_cliente'];
             
             $x++;
             array_push($contenedor,$e);
@@ -107,9 +107,8 @@ class Agenda_reserva_model extends CI_model{
         $datos['fecha_capturada']       = date('Y-m-d H:i:s',strtotime($datos['inicio'].' '.$datos['hora'].':00'));
         
         //== consultamos el color ya que no es enviado por el serialize
-        $this->db->where('id_tipo_evento',$datos['id_tipo_evento']);
-        $evento     = (array) $this->db->get('tipo_evento')->row();
-        $datos['color_fondo']           = $evento['color_fondo'];
+        // $this->db->where('id_tipo_evento',$datos['id_tipo_evento']);
+        // $evento     = (array) $this->db->get('tipo_evento')->row();
         $id_agenda_reserva              = $datos['id_agenda_reserva'];
 
         //=== verificamos que el id_cliente venga vacio para hacer la identificacion si el ciete ya esta registrado
@@ -132,7 +131,9 @@ class Agenda_reserva_model extends CI_model{
 
         }
 
+        $color_fondo   = $datos['color_fondo'];
         //== vaciamos los datos innecesarios para la db
+        unset($datos['color_fondo']);
         unset($datos['id_oculto']);
         unset($datos['inicio']);
         unset($datos['final']);
@@ -147,6 +148,7 @@ class Agenda_reserva_model extends CI_model{
 
         if($id_agenda_reserva == 0){
             $datos['id_usuario']    = $this->usuario['id_usuario'];
+            $datos['color_fondo']   = $color_fondo;
             if($this->db->insert('agenda_eventos',$datos)){
                 echo 200;
                 $accion_realizada = 'Registro una nueva reverva ID '.$this->db->insert_id().', para el cliente ID '.$datos['id_cliente'];
@@ -155,10 +157,12 @@ class Agenda_reserva_model extends CI_model{
             
             // validamos que siempre venga con id de cliente para que no se pierda el evento
             if(empty($datos['id_cliente'])) unset($datos['id_cliente']);
-            
             $this->db->where('id_agenda_reserva',$id_agenda_reserva);
             if($this->db->update('agenda_eventos',$datos)){
                 echo 200;
+                $this->db->where('id_agenda_reserva',$id_agenda_reserva);
+                $evento = (array) $this->db->get('agenda_eventos')->row();
+                $datos['id_cliente'] = $evento['id_cliente'];
                 $accion_realizada = 'Actualizo la nueva reverva ID '.$this->db->insert_id().', de el cliente ID '.$datos['id_cliente'];
             }
         }
@@ -170,7 +174,7 @@ class Agenda_reserva_model extends CI_model{
         //== hacemos un join para obtener los datos necesarios.
         $this->db->where('agenda_eventos.id_agenda_reserva',$id_agenda_reserva);
         $this->db->join('clientes','clientes.id_cliente=agenda_eventos.id_cliente');
-        $this->db->join('tipo_evento','tipo_evento.id_tipo_evento=agenda_eventos.id_tipo_evento');
+        // $this->db->join('tipo_evento','tipo_evento.id_tipo_evento=agenda_eventos.id_tipo_evento');
         return (array) $this->db->get('agenda_eventos')->row();
     }
 

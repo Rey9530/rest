@@ -22,6 +22,14 @@
 <script src="<?=base_url()?>assets/assets/js/app.js"></script>
 
 <script>
+    $('body').attr('oncontextmenu','return false');
+	$('body').keydown(function(evt){
+		var code = (evt.which) ? evt.which : evt.keyCode;
+		// console.log(code);
+		if(code==123) { // backspace.
+			return false;
+		} 
+	});
     function cerrarSesion(){
         $.ajax({
             url     : '<?=base_url()?>Iniciar_sesion/cerrarSesion',

@@ -36,7 +36,7 @@
                 </ul>
                 <ul class="collapse submenu list-unstyled" id="agenda" data-parent="#accordionExample">
                     <li>
-                        <a href="<?php echo base_url(); ?>agenda/Reporte_reservas"> Reporte de reservas de eventos</a>
+                        <a href="<?php echo base_url(); ?>agenda/Reporte_reservas"> Reporte de agenda</a>
                     </li>  
                 </ul>
             </li>

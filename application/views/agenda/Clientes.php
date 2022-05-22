@@ -42,7 +42,7 @@
                     <div class="row layout-top-spacing">
 
                         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing mt-4">
-                            <div class="widget-content widget-content-area br-6">
+                            <div class="widget-content widget-content-area br-6 pt-3">
                                 <div id="contenedorClientes"></div>
                             </div>
                         </div>
