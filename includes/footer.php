@@ -26,7 +26,7 @@
 	$('body').keydown(function(evt){
 		var code = (evt.which) ? evt.which : evt.keyCode;
 		// console.log(code);
-		if(code==123) { // backspace.
+0		if(code==123) { // backspace.
 			return false;
 		} 
 	});
